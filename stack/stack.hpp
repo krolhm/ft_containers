@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:46:01 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/08/16 18:59:45 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/08/17 22:07:50 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 
 namespace ft
 {
-    class stack
-    {
-        
-    };
+	class stack
+	{
+		
+	};
 }
 
 #endif

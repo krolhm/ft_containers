@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:45:56 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/08/16 20:01:27 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/08/17 22:21:45 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdexcept>
 # include <iostream>
 # include "vector_iterator.hpp"
+# include "../common/iterator_traits.hpp"
 
 namespace ft
 {
@@ -23,14 +24,14 @@ namespace ft
 	class vector
 	{
 		public:
-			typedef T value_type;
-			typedef T& reference;
-			typedef const T& const_reference;
-			typedef T *pointer;
-			typedef vector_iterator<value_type> iterator;
-			typedef vector_iterator<const value_type> const_iterator;
-			typedef vector_reverse_iterator<value_type> reverse_iterator;
-    		typedef vector_reverse_iterator<const value_type> const_reverse_iterator;
+			typedef T			value_type;
+			typedef T&			reference;
+			typedef const T&	const_reference;
+			typedef T 			*pointer;
+			typedef vector_iterator<value_type>					iterator;
+			typedef vector_iterator<const value_type>			const_iterator;
+			typedef vector_reverse_iterator<value_type> 		reverse_iterator;
+    		typedef vector_reverse_iterator<const value_type>	const_reverse_iterator;
 			typedef size_t size_type;
 
 			// Iterators:
