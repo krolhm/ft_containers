@@ -6,34 +6,35 @@
 #    By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/16 18:38:36 by rbourgea          #+#    #+#              #
-#    Updated: 2021/08/16 18:39:22 by rbourgea         ###   ########.fr        #
+#    Updated: 2021/08/19 20:46:55 by rbourgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = executable
+NAME	=	executable
 
-SRCS = main.cpp
+SRCS	=	main.cpp \
+			*/*.cpp
 
-OBJS = $(SRCS:.cpp=.o)
+OBJS	=	$(SRCS:.cpp=.o)
 
-CC = clang++
+CC		=	clang++
 
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CFLAGS	=	-Wall -Werror -Wextra -std=c++98
 
-all: $(NAME)
+all:		$(NAME)
 
-$(NAME): $(OBJS)
-		$(CC) $(CFLAGS) $(OBJS) -o $@
+$(NAME):	$(OBJS)
+			$(CC) $(CFLAGS) $(OBJS) -o $@
 
 %.o: %.cpp
-		$(CC) $(CFLAGS) -o $@ -c $<
+			$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
-		rm -f $(OBJS)
+			rm -f $(OBJS)
 
-fclean: clean
-		rm -f $(NAME)
+fclean: 	clean
+			rm -f $(NAME)
 
-re: fclean all
+re: 		fclean all
 
-.PHONY: clean all fclean re
+.PHONY: 	clean all fclean re
