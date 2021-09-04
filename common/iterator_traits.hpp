@@ -5,29 +5,72 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/17 22:07:34 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/08/17 22:21:38 by rbourgea         ###   ########.fr       */
+/*   Created: 2021/09/04 16:03:55 by rbourgea          #+#    #+#             */
+/*   Updated: 2021/09/04 17:39:19 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ITERATOR_TRAITS_HPP
 # define ITERATOR_TRAITS_HPP
 
-# include <iterator>
 # include <cstddef>
+# include <limits>
+# include <sstream>
+# include <typeinfo>
+# include <iostream>
 
-namespace ft 
+# include "iterator.hpp"
+# include "random_access_iterator.hpp"
+
+namespace ft
 {
-	template <class Category, class T, class Distance = ptrdiff_t, class Pointer = T*, class Reference = T&>
-	class iterator
+	// ======================================== //
+	// iterator_traits must be reimplemented ✅ //
+	// ======================================== //
+	// sources: https://www.cplusplus.com/reference/iterator/iterator_traits/
+
+	template <class Iterator> 
+	class iterator_traits
 	{
-		public:
-			typedef Category    iterator_category;
-			typedef T           value_type;
-			typedef Distance    difference_type;
-			typedef Pointer     pointer;
-			typedef Reference   reference;
+		typedef typename Iterator::difference_type       difference_type;
+		typedef typename Iterator::value_type            value_type;
+		typedef typename Iterator::pointer               pointer;
+		typedef typename Iterator::reference             reference;
+		typedef typename Iterator::iterator_category     iterator_category;
 	};
-}
+
+	template <class T> 
+	class iterator_traits<T*>
+	{
+		typedef ptrdiff_t                       difference_type;
+		typedef T                               value_type;
+		typedef T*                              pointer;
+		typedef T&                              reference;
+		typedef ft::random_access_iterator_tag  iterator_category;
+	};
+
+	template <class T> 
+	class iterator_traits<const T*>
+	{
+		typedef ptrdiff_t                       difference_type;
+		typedef T                               value_type;
+		typedef const T*                        pointer;
+		typedef const T&                        reference;
+		typedef ft::random_access_iterator_tag  iterator_category;
+	};
+
+	template <class InputIterator>
+	typename ft::iterator_traits<InputIterator>::difference_type distance(InputIterator first, InputIterator last)
+	{
+		typename ft::iterator_traits<InputIterator>::difference_type diff = 0;
+		while (first != last)
+		{
+			first++;
+			diff++;
+		}
+		return (diff);
+	}
+
+};
 
 #endif
