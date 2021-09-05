@@ -1,19 +1,19 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    MAkefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/16 18:38:36 by rbourgea          #+#    #+#              #
-#    Updated: 2021/08/19 20:46:55 by rbourgea         ###   ########.fr        #
+#    Updated: 2021/09/05 10:34:24 by rbourgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	executable
+NAME	=	check
 
-SRCS	=	main.cpp \
-			*/*.cpp
+SRCS	=	tests/vector.cpp
+			# main.cpp
 
 OBJS	=	$(SRCS:.cpp=.o)
 
