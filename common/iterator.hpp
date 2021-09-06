@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 16:17:51 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/04 18:21:24 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/06 20:32:16 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,12 @@ namespace ft
 	template <class T>
 	class bidirectional_iterator : ft::iterator<ft::bidirectional_iterator_tag, T>
 	{
-		typedef typename ft::iterator<ft::bidirectional_iterator_tag, T>::iterator_category iterator_category;
-		typedef typename ft::iterator<ft::bidirectional_iterator_tag, T>::value_type value_type;
-		typedef typename ft::iterator<ft::bidirectional_iterator_tag, T>::difference_type difference_type;
-		typedef typename ft::iterator<ft::bidirectional_iterator_tag, T>::pointer pointer;
-		typedef typename ft::iterator<ft::bidirectional_iterator_tag, T>::reference reference;
+		public:
+			typedef typename ft::iterator<ft::bidirectional_iterator_tag, T>::iterator_category iterator_category;
+			typedef typename ft::iterator<ft::bidirectional_iterator_tag, T>::value_type value_type;
+			typedef typename ft::iterator<ft::bidirectional_iterator_tag, T>::difference_type difference_type;
+			typedef typename ft::iterator<ft::bidirectional_iterator_tag, T>::pointer pointer;
+			typedef typename ft::iterator<ft::bidirectional_iterator_tag, T>::reference reference;
 
 		private:
 			pointer __iterator;
