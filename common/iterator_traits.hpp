@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 16:03:55 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/04 17:39:19 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/06 16:28:50 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,34 @@ namespace ft
 	template <class Iterator> 
 	class iterator_traits
 	{
-		typedef typename Iterator::difference_type       difference_type;
-		typedef typename Iterator::value_type            value_type;
-		typedef typename Iterator::pointer               pointer;
-		typedef typename Iterator::reference             reference;
-		typedef typename Iterator::iterator_category     iterator_category;
+		public:
+			typedef typename Iterator::difference_type       difference_type;
+			typedef typename Iterator::value_type            value_type;
+			typedef typename Iterator::pointer               pointer;
+			typedef typename Iterator::reference             reference;
+			typedef typename Iterator::iterator_category     iterator_category;
 	};
 
 	template <class T> 
 	class iterator_traits<T*>
 	{
-		typedef ptrdiff_t                       difference_type;
-		typedef T                               value_type;
-		typedef T*                              pointer;
-		typedef T&                              reference;
-		typedef ft::random_access_iterator_tag  iterator_category;
+		public:
+			typedef ptrdiff_t                       difference_type;
+			typedef T                               value_type;
+			typedef T*                              pointer;
+			typedef T&                              reference;
+			typedef ft::random_access_iterator_tag  iterator_category;
 	};
 
 	template <class T> 
 	class iterator_traits<const T*>
 	{
-		typedef ptrdiff_t                       difference_type;
-		typedef T                               value_type;
-		typedef const T*                        pointer;
-		typedef const T&                        reference;
-		typedef ft::random_access_iterator_tag  iterator_category;
+		public:
+			typedef ptrdiff_t                       difference_type;
+			typedef T                               value_type;
+			typedef const T*                        pointer;
+			typedef const T&                        reference;
+			typedef ft::random_access_iterator_tag  iterator_category;
 	};
 
 	template <class InputIterator>

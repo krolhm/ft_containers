@@ -6,21 +6,24 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:45:56 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/04 17:48:02 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/06 19:55:30 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_HPP
 # define VECTOR_HPP
 
+# include <memory>
 # include <stdexcept>
 # include <iostream>
+# include <cstring>
 # include "common/others.hpp"
 # include "common/random_access_iterator.hpp"
 # include "common/reverse_iterator.hpp"
 # include "common/lexicographical_compare.hpp"
 # include "common/iterator.hpp"
-# include <limits>
+# include "common/enable_if.hpp"
+# include "common/is_integral.hpp"
 
 namespace ft
 {
@@ -32,8 +35,8 @@ namespace ft
 			typedef Alloc											allocator_type;
 			typedef typename allocator_type::reference				reference;
 			typedef typename allocator_type::const_reference		const_reference;
-			typedef typename allocator_type::pointer				*pointer;
-			typedef typename allocator_type::const_pointer			*const_pointer;
+			typedef typename allocator_type::pointer				pointer;
+			typedef typename allocator_type::const_pointer			const_pointer;
 			typedef ft::random_access_iterator<value_type>			iterator;
 			typedef ft::random_access_iterator<const value_type>	const_iterator;
 			typedef ft::reverse_iterator<iterator>					reverse_iterator;
@@ -64,14 +67,15 @@ namespace ft
 			}
 			// (3) range constructor
 			template <class InputIterator> 
-			vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type()) : _alloc(alloc)
+			vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), 
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = u_nullptr) : _alloc(alloc)
 			{
 				bool is_valid;
 				if (!(is_valid = ft::is_ft_iterator_tagged<typename ft::iterator_traits<InputIterator>::iterator_category >::value))
 					throw (ft::InvalidIteratorException<typename ft::is_ft_iterator_tagged<typename ft::iterator_traits<InputIterator>::iterator_category >::type>());
 
 				difference_type n = ft::distance(first, last);
-				_start = _alloc.allocate( n );
+				_start = _alloc.allocate(n);
 				_end_capacity = _start + n;
 				_end = _start;
 				while (n--)
@@ -245,7 +249,7 @@ namespace ft
 			// range (1) :
 			// In the range version (1), the new contents are elements constructed from each of the elements in the range between first and last, in the same order.
 			template <class InputIterator>
-			void assign(InputIterator first, InputIterator last)
+			void assign(InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = u_nullptr)
 			{
 				bool is_valid;
 				if (!(is_valid = ft::is_ft_iterator_tagged<typename ft::iterator_traits<InputIterator>::iterator_category>::value))
@@ -469,7 +473,7 @@ namespace ft
 	template <class T, class Alloc>
 	bool operator<= (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs)
 	{
-		return !(lhs > rhs);
+		return (!(lhs > rhs));
 	}
 
 	template <class T, class Alloc>
