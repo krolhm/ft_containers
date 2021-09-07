@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:45:56 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/06 19:55:30 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/07 15:23:24 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -350,19 +350,32 @@ namespace ft
 			}
 			// range (3)
 			template <typename InputIterator>
-			void insert(iterator position, InputIterator first, InputIterator last)
+			void insert(iterator position, InputIterator first, InputIterator last,
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = u_nullptr)
 			{
-				size_type pos = position - begin();
-				size_type s = last - first;
-
-				if (this->_size + s > this->_capacity)
-					reserve(this->_size + s);
-				position = begin() + pos;
-				for (InputIterator it = first; it != last; ++it)
+				bool is_valid;
+				if (!(is_valid = ft::is_ft_iterator_tagged<typename ft::iterator_traits<InputIterator>::iterator_category>::value))
+					throw (ft::InvalidIteratorException<typename ft::is_ft_iterator_tagged<typename ft::iterator_traits<InputIterator>::iterator_category>::type>());
+				
+				size_type dist = ft::distance(first, last);
+				if (size_type(_end_capacity - _end) >= dist)
 				{
-					position = insert(position, *it);
-					position++;
+					for (size_type i = 0; i < size() - (&(*position) - _start); i++)
+						_alloc.construct(_end - i + (dist - 1), *(_end - i - 1));
+					_end += dist;
+					for (; &(*first) != &(*last); first++, position++)
+						_alloc.construct(&(*position), *first);
 				}
+				else
+				{
+					pointer new_strat = pointer();
+					pointer new_end = pointer();
+					pointer new_end_capacity = pointer();
+					
+					new_start = _alloc.allocate(size() * 2);
+					
+				}
+				
 			}
 			iterator erase(iterator position)
 			{

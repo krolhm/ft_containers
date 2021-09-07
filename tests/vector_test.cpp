@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 10:35:52 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/06 20:53:58 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/07 15:04:18 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,61 +114,61 @@ int main(int argc, char** argv)
 	ft::vector<int> ft_vector_fill_sizedv(42, 42);
 	checkVectorsDiff(stl_vector_fill_sizedv, ft_vector_fill_sizedv);
 	
-	// std::cout << "==============================" << std::endl;
-	// std::cout << std::endl << "Range constructor: " << std::endl;
-	// int range_array[] = {42, 21, 123456, 0, 4, 13};
-	// std::vector<int>::iterator stl_iterator(&(range_array[0]));
-	// ft::vector<int>::iterator ft_iterator(&(range_array[0]));
-	// std::vector<int> stl_vector_range(stl_iterator, stl_iterator + 6);
-	// ft::vector<int> ft_vector_range(ft_iterator, ft_iterator + 6);
-	// checkVectorsDiff(stl_vector_range, ft_vector_range);
+	std::cout << "==============================" << std::endl;
+	std::cout << std::endl << "Range constructor: " << std::endl;
+	int range_array[] = {42, 21, 123456, 0, 4, 13};
+	std::vector<int>::iterator stl_iterator(&(range_array[0]));
+	ft::vector<int>::iterator ft_iterator(&(range_array[0]));
+	std::vector<int> stl_vector_range(stl_iterator, stl_iterator + 6);
+	ft::vector<int> ft_vector_range(ft_iterator, ft_iterator + 6);
+	checkVectorsDiff(stl_vector_range, ft_vector_range);
 	
-	// std::cout << "==============================" << std::endl;
-	// std::cout << std::endl << "Copy constructor: " << std::endl;
-	// std::vector<int> stl_vector_copy(stl_vector_range);
-	// ft::vector<int> ft_vector_copy(ft_vector_range);
-	// checkVectorsDiff(stl_vector_copy, ft_vector_copy);
+	std::cout << "==============================" << std::endl;
+	std::cout << std::endl << "Copy constructor: " << std::endl;
+	std::vector<int> stl_vector_copy(stl_vector_range);
+	ft::vector<int> ft_vector_copy(ft_vector_range);
+	checkVectorsDiff(stl_vector_copy, ft_vector_copy);
 
-	// std::cout << "==============================" << std::endl;
-	// std::cout << std::endl << "Assign constructor: " << std::endl;
-	// std::vector<int> stl_vector_copy = stl_vector_range;
-	// ft::vector<int> ft_vector_copy = ft_vector_range;
-	// checkVectorsDiff(stl_vector_copy, ft_vector_copy);
+	std::cout << "==============================" << std::endl;
+	std::cout << std::endl << "Assign constructor: " << std::endl;
+	std::vector<int> stl_vector_assign = stl_vector_range;
+	ft::vector<int> ft_vector_assign = ft_vector_range;
+	checkVectorsDiff(stl_vector_assign, ft_vector_assign);
 
-	// std::cout << "==============================" << std::endl;
-	// std::cout << std::endl << "Iterator begin(): " << std::endl;
-	// int begin_stl = *(stl_vector_range.begin());
-	// int begin_ft = *(ft_vector_range.begin());
-	// if (begin_stl == begin_ft)
-	// 	std::cout << std::endl << "=> begin() [OK]" << std::endl;
-	// else
-	// 	std::cout << "begin() [ERROR]" << std::endl;
-	// std::cout << "[STL] begin() = " << begin_stl;
-	// std::cout << "[FT]  begin() = " << begin_ft;
+	std::cout << "==============================" << std::endl;
+	std::cout << std::endl << "Iterator begin(): " << std::endl;
+	int begin_stl = *(stl_vector_range.begin());
+	int begin_ft = *(ft_vector_range.begin());
+	if (begin_stl == begin_ft)
+		std::cout << std::endl << "=> begin() [OK]" << std::endl;
+	else
+		std::cout << "begin() [ERROR]" << std::endl;
+	std::cout << "[STL] begin() = " << begin_stl;
+	std::cout << "[FT]  begin() = " << begin_ft;
 	
-	// std::cout << "==============================" << std::endl;
-	// std::cout << std::endl << "Const Iterator begin(): " << std::endl;
-	// std::vector<int>::const_iterator stl_const_it = stl_range_vector.begin();
-	// ft::vector<int>::const_iterator ft_const_it = ft_range_vector.begin();
-	// const int const_begin_stl = *(stl_const_it);
-	// const int const_begin_ft = *(ft_const_it);
-	// if (const_begin_stl == const_begin_ft)
-	// 	std::cout << std::endl << "=> const begin() [OK]" << std::endl;
-	// else
-	// 	std::cout << "const begin() [ERROR]" << std::endl;
-	// std::cout << "[STL] begin() = " << const_begin_stl;
-	// std::cout << "[FT]  begin() = " << const_begin_ft;
+	std::cout << "==============================" << std::endl;
+	std::cout << std::endl << "Const Iterator begin(): " << std::endl;
+	std::vector<int>::const_iterator stl_const_it = stl_vector_range.begin();
+	ft::vector<int>::const_iterator ft_const_it = ft_vector_range.begin();
+	const int const_begin_stl = *(stl_const_it);
+	const int const_begin_ft = *(ft_const_it);
+	if (const_begin_stl == const_begin_ft)
+		std::cout << std::endl << "=> const begin() [OK]" << std::endl;
+	else
+		std::cout << "const begin() [ERROR]" << std::endl;
+	std::cout << "[STL] begin() = " << const_begin_stl;
+	std::cout << "[FT]  begin() = " << const_begin_ft;
 
-	// std::cout << "==============================" << std::endl;
-	// std::cout << std::endl << "Iterator end(): " << std::endl;
-	// int end_stl = *(stl_vector_range.end() - 1);
-	// int end_ft = *(ft_vector_range.end() - 1);
-	// if (end_stl == end_ft)
-	// 	std::cout << std::endl << "=> end() [OK]" << std::endl;
-	// else
-	// 	std::cout << "end() [ERROR]" << std::endl;
-	// std::cout << "[STL] end() = " << end_stl;
-	// std::cout << "[FT]  end() = " << end_ft;
+	std::cout << "==============================" << std::endl;
+	std::cout << std::endl << "Iterator end(): " << std::endl;
+	int end_stl = *(stl_vector_range.end() - 1);
+	int end_ft = *(ft_vector_range.end() - 1);
+	if (end_stl == end_ft)
+		std::cout << std::endl << "=> end() [OK]" << std::endl;
+	else
+		std::cout << "end() [ERROR]" << std::endl;
+	std::cout << "[STL] end() = " << end_stl;
+	std::cout << "[FT]  end() = " << end_ft;
 
 
 
