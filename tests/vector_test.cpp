@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 10:35:52 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/07 17:21:27 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/07 17:30:06 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # include <fstream>
 # include <cstring>
 # include <iostream>
-
-# include <conio.h>
 
 # include "../vector.hpp"
 
@@ -97,7 +95,7 @@ int main(int argc, char** argv)
 	std::vector<int> stl_vector_int;
 	ft::vector<int> ft_vector_int;
 	checkVectorsDiff(stl_vector_int, ft_vector_int);
-	getch();
+	std::cin.get();
 
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Default constructor pointer: " << std::endl;
@@ -106,24 +104,28 @@ int main(int argc, char** argv)
 	checkVectorsDiff(*stl_vector_int_p, *ft_vector_int_p);
 	delete stl_vector_int_p;
 	delete ft_vector_int_p;
+	std::cin.get();
 
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Fill constructor: " << std::endl;
 	std::vector<int> stl_vector_fill(0);
 	ft::vector<int> ft_vector_fill(0);
 	checkVectorsDiff(stl_vector_fill, ft_vector_fill);
+	std::cin.get();
 	
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Fill constructor sized: " << std::endl;
 	std::vector<int> stl_vector_fill_sized(42);
 	ft::vector<int> ft_vector_fill_sized(42);
 	checkVectorsDiff(stl_vector_fill_sized, ft_vector_fill_sized);
+	std::cin.get();
 	
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Fill constructor sized + value: " << std::endl;
 	std::vector<int> stl_vector_fill_sizedv(42, 42);
 	ft::vector<int> ft_vector_fill_sizedv(42, 42);
 	checkVectorsDiff(stl_vector_fill_sizedv, ft_vector_fill_sizedv);
+	std::cin.get();
 	
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Range constructor: " << std::endl;
@@ -133,18 +135,21 @@ int main(int argc, char** argv)
 	std::vector<int> stl_vector_range(stl_iterator, stl_iterator + 6);
 	ft::vector<int> ft_vector_range(ft_iterator, ft_iterator + 6);
 	checkVectorsDiff(stl_vector_range, ft_vector_range);
+	std::cin.get();
 	
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Copy constructor: " << std::endl;
 	std::vector<int> stl_vector_copy(stl_vector_range);
 	ft::vector<int> ft_vector_copy(ft_vector_range);
 	checkVectorsDiff(stl_vector_copy, ft_vector_copy);
+	std::cin.get();
 
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Assign constructor: " << std::endl;
 	std::vector<int> stl_vector_assign = stl_vector_range;
 	ft::vector<int> ft_vector_assign = ft_vector_range;
 	checkVectorsDiff(stl_vector_assign, ft_vector_assign);
+	std::cin.get();
 
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Iterator begin(): " << std::endl;
@@ -156,6 +161,7 @@ int main(int argc, char** argv)
 		std::cout << RED << "=> begin() [ERROR]" << std::endl;
 	std::cout << "[STL] begin() = " << begin_stl << std::endl;
 	std::cout << "[FT]  begin() = " << begin_ft  << std::endl << std::endl;
+	std::cin.get();
 	
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Const Iterator begin(): " << std::endl;
@@ -169,6 +175,7 @@ int main(int argc, char** argv)
 		std::cout << RED << "=> const begin() [ERROR]" << std::endl;
 	std::cout << "[STL] begin() = " << const_begin_stl << std::endl;
 	std::cout << "[FT]  begin() = " << const_begin_ft << std::endl << std::endl;
+	std::cin.get();
 
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Iterator end(): " << std::endl;
@@ -180,6 +187,7 @@ int main(int argc, char** argv)
 		std::cout << RED << "=> end() [ERROR]" << std::endl;
 	std::cout << "[STL] end() = " << end_stl << std::endl;
 	std::cout << "[FT]  end() = " << end_ft << std::endl << std::endl;
+	std::cin.get();
 
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Const Iterator end(): " << std::endl;
@@ -193,6 +201,7 @@ int main(int argc, char** argv)
 		std::cout << RED << "=> const end() [ERROR]" << std::endl;
 	std::cout << "[STL] end() = " << const_end_stl << std::endl;
 	std::cout << "[FT]  end() = " << const_end_ft << std::endl << std::endl;
+	std::cin.get();
 	
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Iterator rbegin(): " << std::endl;
@@ -204,6 +213,7 @@ int main(int argc, char** argv)
 		std::cout << RED << "=> rbegin() [ERROR]" << std::endl;
 	std::cout << "[STL] rbegin() = " << rbegin_stl << std::endl;
 	std::cout << "[FT]  rbegin() = " << rbegin_ft << std::endl << std::endl;
+	std::cin.get();
 	
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Const Iterator rbegin(): " << std::endl;
@@ -217,6 +227,7 @@ int main(int argc, char** argv)
 		std::cout << RED << "=> const rbegin() [ERROR]" << std::endl;
 	std::cout << "[STL] rbegin() = " << const_rbegin_stl << std::endl;
 	std::cout << "[FT]  rbegin() = " << const_rbegin_ft << std::endl << std::endl;
+	std::cin.get();
 
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Iterator rend(): " << std::endl;
@@ -228,6 +239,7 @@ int main(int argc, char** argv)
 		std::cout << RED << "=> rend() [ERROR]" << std::endl;
 	std::cout << "[STL] rend() = " << rend_stl << std::endl;
 	std::cout << "[FT]  rend() = " << rend_ft << std::endl << std::endl;
+	std::cin.get();
 
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Const Iterator rend(): " << std::endl;
@@ -241,18 +253,21 @@ int main(int argc, char** argv)
 		std::cout << RED << "=> const rend() [ERROR]" << std::endl;
 	std::cout << "[STL] rend() = " << const_rend_stl << std::endl;
 	std::cout << "[FT]  rend() = " << const_rend_ft << std::endl << std::endl;
+	std::cin.get();
 
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Size small: " << std::endl;
 	std::vector<int> stl_fill(21);
 	ft::vector<int> ft_fill(21);
 	checkVectorsDiff(stl_fill, ft_fill);
+	std::cin.get();
 	
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Size big: " << std::endl;
 	std::vector<int> stl_fill2(100042);
 	ft::vector<int> ft_fill2(100042);
 	checkVectorsDiff(stl_fill2, ft_fill2);
+	std::cin.get();
 	
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Resize +++: " << std::endl;
@@ -261,6 +276,7 @@ int main(int argc, char** argv)
 	stl_fill3.resize(84);
 	ft_fill3.resize(84);
 	checkVectorsDiff(stl_fill3, ft_fill3);
+	std::cin.get();
 	
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Resize ---: " << std::endl;
@@ -269,6 +285,7 @@ int main(int argc, char** argv)
 	stl_fill4.resize(21);
 	ft_fill4.resize(21);
 	checkVectorsDiff(stl_fill4, ft_fill4);
+	std::cin.get();
 
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Capacity small: " << std::endl;
@@ -279,12 +296,14 @@ int main(int argc, char** argv)
 	stl_fill5.push_back(84);
 	ft_fill5.push_back(84);
 	checkVectorsDiff(stl_fill5, ft_fill5);
+	std::cin.get();
 
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Capacity big: " << std::endl;
 	std::vector<int> stl_fill6(42000);
 	ft::vector<int> ft_fill6(42000);
 	checkVectorsDiff(stl_fill6, ft_fill6);
+	std::cin.get();
 	
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Reserve: " << std::endl;
@@ -293,6 +312,7 @@ int main(int argc, char** argv)
 	stl_reserve.reserve(42);
 	ft_reserve.reserve(42);
 	checkVectorsDiff(stl_reserve, ft_reserve);
+	std::cin.get();
 
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "Operator[]: " << std::endl;
@@ -302,6 +322,7 @@ int main(int argc, char** argv)
 		std::cout << RED << "=> operator[0] [ERROR]" << std::endl;
 	std::cout << "[STL] operator[0] = " << stl_vector_range[0] << std::endl;
 	std::cout << "[FT]  operator[0] = " << ft_vector_range[0] << std::endl << std::endl;
+	std::cin.get();
 
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "at(4): " << std::endl;
@@ -311,6 +332,7 @@ int main(int argc, char** argv)
 		std::cout << RED << "=> a(4) [ERROR]" << std::endl;
 	std::cout << "[STL] at(4) = " << stl_vector_range.at(4) << std::endl;
 	std::cout << "[FT]  at(4) = " << ft_vector_range.at(4) << std::endl << std::endl;
+	std::cin.get();
 	
 	std::cout << BOLD << "==============================" << RESET << std::endl;
 	std::cout << std::endl << "const at(4): " << std::endl;
@@ -322,6 +344,7 @@ int main(int argc, char** argv)
 		std::cout << RED << "=> const a(4) [ERROR]" << std::endl;
 	std::cout << "[STL] const at(4) = " << stl_at_const << std::endl;
 	std::cout << "[FT]  const at(4) = " << ft_at_const << std::endl << std::endl;
+	std::cin.get();
 
 
 

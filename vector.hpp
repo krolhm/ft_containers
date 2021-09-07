@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:45:56 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/07 15:28:39 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/07 17:24:56 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,10 +210,6 @@ namespace ft
 			}
 			reference at(size_type n) // Access element
 			{
-				if (n >= this->_size)
-				{
-					throw std::out_of_range("ft::vector::at");
-				}
 				checkRange(n);
 				return ((*this)[n]);
 			}
