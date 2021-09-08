@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 10:35:52 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/07 17:30:06 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/08 18:34:54 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -345,7 +345,122 @@ int main(int argc, char** argv)
 	std::cout << "[STL] const at(4) = " << stl_at_const << std::endl;
 	std::cout << "[FT]  const at(4) = " << ft_at_const << std::endl << std::endl;
 	std::cin.get();
+	
+	std::cout << BOLD << "==============================" << RESET << std::endl;
+	std::cout << std::endl << "front(): " << std::endl;
+	if (stl_vector_range.front() == ft_vector_range.front())
+		std::cout << GREEN << std::endl << "=> front() [OK]" << std::endl;
+	else
+		std::cout << RED << "=> front() [ERROR]" << std::endl;
+	std::cout << "[STL] front() = " << stl_vector_range.front() << std::endl;
+	std::cout << "[FT]  front() = " << ft_vector_range.front() << std::endl << std::endl;
+	std::cin.get();
 
+	std::cout << BOLD << "==============================" << RESET << std::endl;
+	std::cout << std::endl << "const front(): " << std::endl;
+	const int stl_front_const = stl_vector_range.front();
+	const int ft_front_const = ft_vector_range.front();
+	if (stl_front_const == ft_front_const)
+		std::cout << GREEN << std::endl << "=> const front() [OK]" << std::endl;
+	else
+		std::cout << RED << "=> const front() [ERROR]" << std::endl;
+	std::cout << "[STL] const front() = " << stl_front_const << std::endl;
+	std::cout << "[FT]  const front() = " << ft_front_const << std::endl << std::endl;
+	std::cin.get();
+	
+	std::cout << BOLD << "==============================" << RESET << std::endl;
+	std::cout << std::endl << "back(): " << std::endl;
+	if (stl_vector_range.back() == ft_vector_range.back())
+		std::cout << GREEN << std::endl << "=> back() [OK]" << std::endl;
+	else
+		std::cout << RED << "=> back() [ERROR]" << std::endl;
+	std::cout << "[STL] back() = " << stl_vector_range.back() << std::endl;
+	std::cout << "[FT]  back() = " << ft_vector_range.back() << std::endl << std::endl;
+	std::cin.get();
+
+	std::cout << BOLD << "==============================" << RESET << std::endl;
+	std::cout << std::endl << "const back(): " << std::endl;
+	const int stl_back_const = stl_vector_range.back();
+	const int ft_back_const = ft_vector_range.back();
+	if (stl_back_const == ft_back_const)
+		std::cout << GREEN << std::endl << "=> const back() [OK]" << std::endl;
+	else
+		std::cout << RED << "=> const back() [ERROR]" << std::endl;
+	std::cout << "[STL] const back() = " << stl_back_const << std::endl;
+	std::cout << "[FT]  const back() = " << ft_back_const << std::endl << std::endl;
+	std::cin.get();
+
+	std::cout << BOLD << "==============================" << RESET << std::endl;
+	std::cout << std::endl << "Assign range: " << std::endl;
+	std::vector<int> stl_assign;
+	ft::vector<int> ft_assign;
+	stl_assign.assign(stl_iterator, stl_iterator + 6);
+	ft_assign.assign(ft_iterator, ft_iterator + 6);
+	checkVectorsDiff(stl_assign, ft_assign);
+	std::cin.get();
+	
+	std::cout << BOLD << "==============================" << RESET << std::endl;
+	std::cout << std::endl << "Assign range & replace: " << std::endl;
+	std::vector<int> stl_assign2(42);
+	ft::vector<int> ft_assign2(42);
+	stl_assign2.assign(stl_iterator, stl_iterator + 6);
+	ft_assign2.assign(ft_iterator, ft_iterator + 6);
+	checkVectorsDiff(stl_assign2, ft_assign2);
+	std::cin.get();
+	
+	std::cout << BOLD << "==============================" << RESET << std::endl;
+	std::cout << std::endl << "Assign fill: " << std::endl;
+	std::vector<int> stl_assign_fill;
+	ft::vector<int> ft_assign_fill;
+	stl_assign_fill.assign(5,6);
+	ft_assign_fill.assign(5,6);
+	checkVectorsDiff(stl_assign_fill, ft_assign_fill);
+	std::cin.get();
+	
+	std::cout << BOLD << "==============================" << RESET << std::endl;
+	std::cout << std::endl << "Assign fill & replace: " << std::endl;
+	std::vector<int> stl_assign_fill2(42);
+	ft::vector<int> ft_assign_fill2(42);
+	stl_assign_fill2.assign(5,6);
+	ft_assign_fill2.assign(5,6);
+	checkVectorsDiff(stl_assign_fill2, ft_assign_fill2);
+	std::cin.get();
+	
+	std::cout << BOLD << "==============================" << RESET << std::endl;
+	std::cout << std::endl << "Push back empty: " << std::endl;
+	std::vector<int> stl_pusback;
+	ft::vector<int> ft_pusback;
+	stl_pusback.push_back(4);
+	ft_pusback.push_back(4);
+	checkVectorsDiff(stl_pusback, ft_pusback);
+	std::cin.get();
+	
+	std::cout << BOLD << "==============================" << RESET << std::endl;
+	std::cout << std::endl << "Push back: " << std::endl;
+	std::vector<int> stl_pusback2(2);
+	ft::vector<int> ft_pusback2(2);
+	stl_pusback2.push_back(4);
+	ft_pusback2.push_back(4);
+	checkVectorsDiff(stl_pusback2, ft_pusback2);
+	std::cin.get();
+	
+	std::cout << BOLD << "==============================" << RESET << std::endl;
+	std::cout << std::endl << "Pop back: " << std::endl;
+	std::vector<int> stl_popback(stl_iterator, stl_iterator + 6);
+	ft::vector<int> ft_popback(ft_iterator, ft_iterator + 6);
+	stl_popback.pop_back();
+	ft_popback.pop_back();
+	checkVectorsDiff(stl_popback, ft_popback);
+	std::cin.get();
+	
+	std::cout << BOLD << "==============================" << RESET << std::endl;
+	std::cout << std::endl << "Insert 1 element: " << std::endl;
+	std::vector<int> stl_insert(stl_iterator, stl_iterator + 6);
+	ft::vector<int> ft_insert(ft_iterator, ft_iterator + 6);
+	stl_insert.insert(stl_insert.begin() + 2, 5);
+	ft_insert.insert(ft_insert.begin() + 2, 5);
+	checkVectorsDiff(stl_popback, ft_popback);
+	std::cin.get();
 
 
 	return (0);
