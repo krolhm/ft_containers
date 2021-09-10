@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:45:26 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/10 20:46:09 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/10 21:46:49 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "common/iterator.hpp"
 # include "common/enable_if.hpp"
 # include "common/is_integral.hpp"
+# include "common/binary_search_tree.hpp"
 
 namespace ft
 {
@@ -185,15 +186,96 @@ namespace ft
 
 				difference_type n = ft::distance(first, last);
 				while (n--)
-					this->insert(*(first++));
+					insert(*(first++));
+			}
+			void erase (iterator position)
+			{
+				erase((*position).first);
+			}
+			size_type erase(const key_type &k)
+			{
+				if (find(k) == end())
+					return (0);
+				_bst.removeByKey(ft::make_pair(k, mapped_type()));
+				return (1);
+			}
+			void erase(iterator first, iterator last)
+			{
+				while (first != last)
+					erase((*(first++)).first);
+			}
+			void swap(map &x)
+			{
+				_bst.swap(x._bst);
+			}
+			void clear()
+			{
+				erase(begin(), end());
 			}
 
+			// Observers:
+			key_compare key_comp() const
+			{
+				return (key_compare());
+			}
+			value_compare value_comp() const
+			{
+				return (value_compare(key_compare()));
+			}
+			
+			// Operations:
+			iterator find(const key_type &k)
+			{
+				return (iterator(_bst.searchByKey(ft::make_pair(k, mapped_type())), _bst._last_node));
+			}
+			const_iterator find(const key_type &k) const
+			{
+				return (const_iterator(_bst.searchByKey(ft::make_pair(k, mapped_type())), _bst._last_node));
+			}
+			size_type count(const key_type &k) const
+			{
+				const_iterator beg = begin();
+				const_iterator end = end();
 
+				while (beg != end)
+					if ((*(beg++)).first == k)
+						return (1);
+				return (0);
+			}
+			const_iterator lower_bound(const key_type &k) const
+			{
+				return (const_iterator(lower_bound(k)));
+			}
+			iterator upper_bound(const key_type &k)
+			{
+				iterator beg = begin();
+				iterator end = end();
+
+				while (beg != end)
+				{
+					if (_comp(k, (*beg).first))
+						break;
+					beg++;
+				}
+				return (beg);
+			}
+			const_iterator upper_bound(const key_type &k) const
+			{
+				return (const_iterator(upper_bound(k)));
+			}
+			ft::pair<const_iterator, const_iterator> equal_range (const key_type& k) const
+			{ 
+				return (ft::make_pair(lower_bound(k), upper_bound(k)));
+			}
+			ft::pair<iterator, iterator> equal_range (const key_type& k)
+			{ 
+				return (ft::make_pair(lower_bound(k), upper_bound(k)));
+			}
 
 			private:
-				allocator_type                          _alloc;
-				Compare                                 _comp;
-				Binary_search_tree<value_type, Compare>  _bst;
+				allocator_type							_alloc;
+				Compare									_comp;
+				Binary_search_tree<value_type, Compare>	_bst;
 	};
 }
 
