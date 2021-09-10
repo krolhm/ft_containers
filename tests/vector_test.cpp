@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 10:35:52 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/10 19:18:42 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/10 20:20:07 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int main(int argc, char** argv)
 	ft::vector<int> ft_vector_fill_sizedv(42, 42);
 	checkVectorsDiff(stl_vector_fill_sizedv, ft_vector_fill_sizedv);
 	std::cin.get();
-	
+
 	std::cout << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Range constructor: " << RESET << std::endl;
 	int range_array[] = {42, 21, 123456, 0, 4, 13};
@@ -136,7 +136,7 @@ int main(int argc, char** argv)
 	ft::vector<int> ft_vector_range(ft_iterator, ft_iterator + 6);
 	checkVectorsDiff(stl_vector_range, ft_vector_range);
 	std::cin.get();
-	
+
 	std::cout << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Copy constructor: " << RESET << std::endl;
 	std::vector<int> stl_vector_copy(stl_vector_range);
