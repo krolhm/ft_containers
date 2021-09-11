@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 16:17:51 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/06 20:32:16 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/11 18:11:23 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,39 @@ namespace ft
 
 	template <typename T>
 	struct is_ft_iterator_tagged : public valid_iterator_tag_res<false, T>
+	{
+		
+	};
+
+	template <typename T>
+	struct is_input_iterator_tagged : public valid_iterator_tag_res<false, T>
+	{
+	};
+
+	template <>
+	struct is_input_iterator_tagged<ft::random_access_iterator_tag>
+		: public valid_iterator_tag_res<true, ft::random_access_iterator_tag>
+	{
+		
+	};
+
+	template <>
+	struct is_input_iterator_tagged<ft::bidirectional_iterator_tag>
+		: public valid_iterator_tag_res<true, ft::bidirectional_iterator_tag>
+	{
+		
+	};
+
+	template <>
+	struct is_input_iterator_tagged<ft::forward_iterator_tag>
+		: public valid_iterator_tag_res<true, ft::forward_iterator_tag>
+	{
+		
+	};
+
+	template <>
+	struct is_input_iterator_tagged<ft::input_iterator_tag>
+		: public valid_iterator_tag_res<true, ft::input_iterator_tag>
 	{
 		
 	};

@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:45:26 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/10 21:46:49 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/11 18:11:32 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@
 # include "common/reverse_iterator.hpp"
 # include "common/lexicographical_compare.hpp"
 # include "common/iterator.hpp"
+# include "common/iterator_traits.hpp"
 # include "common/enable_if.hpp"
 # include "common/is_integral.hpp"
 # include "common/binary_search_tree.hpp"
+# include "common/pair.hpp"
 
 namespace ft
 {
@@ -63,8 +65,8 @@ namespace ft
 			typedef typename allocator_type::const_reference	const_reference;
 			typedef typename allocator_type::pointer		 	pointer;
 			typedef typename allocator_type::const_pointer		const_pointer;
-			typedef typename ft::Binary_search_tree<value_type, key_compare>::iterator iterator;
-			typedef typename ft::Binary_search_tree<value_type, key_compare>::const_iterator const_iterator;
+			typedef typename ft::binary_search_tree<value_type, key_compare>::iterator iterator;
+			typedef typename ft::binary_search_tree<value_type, key_compare>::const_iterator const_iterator;
 			typedef typename ft::reverse_iterator<iterator>		reverse_iterator;
 			typedef typename ft::reverse_iterator<const_iterator> const_reverse_iterator;
 			typedef typename ft::iterator_traits<iterator>::difference_type difference_type;
@@ -275,7 +277,7 @@ namespace ft
 			private:
 				allocator_type							_alloc;
 				Compare									_comp;
-				Binary_search_tree<value_type, Compare>	_bst;
+				binary_search_tree<value_type, Compare>	_bst;
 	};
 }
 

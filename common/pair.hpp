@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 15:44:40 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/04 16:21:38 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/11 17:31:15 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ namespace ft
 				return (*this);
 			}
 	};
-	
+
 	// Operators:
 	template <class T1, class T2>
 	bool operator== (const ft::pair<T1,T2>& lhs, const ft::pair<T1,T2>& rhs)

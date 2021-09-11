@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 21:35:01 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/10 21:57:47 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/11 17:38:08 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,6 @@ namespace ft
 				_node_alloc.deallocate(_last_node, 1);
 			}
 
-			// last_node parent = root of tree
-			// last_node right = last node
-			// last_node left = first node
 			node_pointer	_last_node;
 			node_alloc		_node_alloc;
 	};
