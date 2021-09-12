@@ -6,14 +6,14 @@
 #    By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/16 18:38:36 by rbourgea          #+#    #+#              #
-#    Updated: 2021/09/11 17:31:31 by rbourgea         ###   ########.fr        #
+#    Updated: 2021/09/12 18:19:40 by rbourgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	check
 
-SRCS	=	tests/vector_test.cpp
-			tests/map_test.cpp
+SRCS	=	tests/map_test.cpp
+			# tests/vector_test.cpp
 
 OBJS	=	$(SRCS:.cpp=.o)
 
