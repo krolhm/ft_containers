@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 17:31:55 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/12 13:57:39 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/12 15:01:33 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,5 @@ int main(int argc, char **argv)
 	ft::map<int, std::string> ft_default_map;
 	checkMapsDiff(stl_default_map, ft_default_map);
 	std::cin.get();
-
 
 }
