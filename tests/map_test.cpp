@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 17:31:55 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/12 15:01:33 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/12 18:56:04 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,20 @@ int main(int argc, char **argv)
 	std::map<int, std::string> stl_default_map;
 	ft::map<int, std::string> ft_default_map;
 	checkMapsDiff(stl_default_map, ft_default_map);
+	std::cin.get();
+	
+	std::cout << BOLD << "==============================" << std::endl;
+	std::cout << std::endl << "Range constructor: " << RESET << std::endl;
+	const int range_int[] = {-420, -42, 0, 42, -420};
+	const std::string range_str[] = {"Yes", "No", "Why", "idk", "forty-two"};
+	std::map<int, std::string> stl_map;
+	ft::map<int, std::string> ft_map;
+	for (int i = 0; i < 5; i++)
+	{
+		stl_map.insert(std::make_pair(range_int[i], range_str[i]));
+		ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
+	}
+	checkMapsDiff(stl_map, ft_map);
 	std::cin.get();
 
 }
