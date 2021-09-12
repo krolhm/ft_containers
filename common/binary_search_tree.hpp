@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 21:35:01 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/11 17:38:08 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/11 19:41:19 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define BINARY_SEARCH_TREE_HPP
 
 # include "others.hpp"
+# include "bst_iterator.hpp"
 
 // source: https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
 
@@ -45,7 +46,7 @@ namespace ft
 			typedef Node				*node_pointer;
 			typedef Node_Alloc			node_alloc;
 			typedef ft::bst_iterator<Node, Compare>			iterator;
-			typedef ft::bst_const_iterator<Node, Compare>	const_iterator;
+			// typedef ft::bst_const_iterator<Node, Compare>	const_iterator;
 			typedef size_t				size_type;
 
 			binary_search_tree(const node_alloc &node_alloc_init = node_alloc())
