@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/11 17:31:55 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/13 11:27:38 by rbourgea         ###   ########.fr       */
+/*   Created: 2021/09/11 17:01:55 by rbourgea          #+#    #+#             */
+/*   Updated: 2021/09/13 15:10:24 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ int main(int argc, char **argv)
 	(void)argv;
 	std::cout << BOLD << "MAP TESTS: " << RESET << std::endl;
 
-	std::cout << BOLD << "==============================" << std::endl;
+	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Default constructor: " << RESET << std::endl;
 	std::map<int, std::string> stl_default_map;
 	ft::map<int, std::string> ft_default_map;
 	checkMapsDiff(stl_default_map, ft_default_map);
 	std::cin.get();
 	
-	std::cout << BOLD << "==============================" << std::endl;
+	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Range constructor: " << RESET << std::endl;
 	const int range_int[] = {-420, -42, 0, 42, -420};
 	const std::string range_str[] = {"Yes", "No", "Why", "idk", "forty-two"};
@@ -101,20 +101,20 @@ int main(int argc, char **argv)
 	checkMapsDiff(stl_map, ft_map);
 	std::cin.get();
 	
-	std::cout << BOLD << "==============================" << std::endl;
+	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Copy constructor: " << RESET << std::endl;
 	std::map<int, std::string> stl_map_copy(stl_map);
 	ft::map<int, std::string> ft_map_copy(ft_map);
 	checkMapsDiff(stl_map_copy, ft_map_copy);
 	std::cin.get();
 	
-	std::cout << BOLD << "==============================" << std::endl;
+	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Assign constructor: " << RESET << std::endl;
 	std::map<int, std::string> stl_map_assign = stl_map;
 	ft::map<int, std::string> ft_map_assign = ft_map;
 	checkMapsDiff(stl_map_assign, ft_map_assign);
-	
-	std::cout << BOLD << "==============================" << std::endl;
+
+	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Iterator Begin(): " << RESET << std::endl;
 	if ((*stl_map.begin()).first == (*ft_map.begin()).first)
 		std::cout << GREEN << std::endl << "=> begin() first [OK]" << std::endl;
@@ -130,7 +130,7 @@ int main(int argc, char **argv)
 	std::cout << "[FT]  begin().second = " << (*ft_map.begin()).second << std::endl << std::endl;
 	std::cin.get();
 	
-	std::cout << BOLD << "==============================" << std::endl;
+	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Const Iterator Begin(): " << RESET << std::endl;
 	std::map<int, std::string>::const_iterator stl_map_const = stl_map.begin();
 	ft::map<int, std::string>::const_iterator ft_map_const = ft_map.begin();
@@ -148,7 +148,7 @@ int main(int argc, char **argv)
 	std::cout << "[FT]  const begin().second = " << (*ft_map_const).second << std::endl << std::endl;
 	std::cin.get();
 
-	std::cout << BOLD << "==============================" << std::endl;
+	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Iterator End(): " << RESET << std::endl;
 	if ((*stl_map.end()).first == (*ft_map.end()).first)
 		std::cout << GREEN << std::endl << "=> end() first [OK]" << std::endl;
@@ -164,7 +164,7 @@ int main(int argc, char **argv)
 	std::cout << "[FT]  end().second = " << (*ft_map.end()).second << std::endl << std::endl;
 	std::cin.get();
 	
-	std::cout << BOLD << "==============================" << std::endl;
+	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Const Iterator End(): " << RESET << std::endl;
 	std::map<int, std::string>::const_iterator stl_map_const2 = stl_map.end();
 	ft::map<int, std::string>::const_iterator ft_map_const2 = ft_map.end();
@@ -182,7 +182,7 @@ int main(int argc, char **argv)
 	std::cout << "[FT]  const end().second = " << (*ft_map_const2).second << std::endl << std::endl;
 	std::cin.get();
 	
-	std::cout << BOLD << "==============================" << std::endl;
+	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Iterator rbegin(): " << RESET << std::endl;
 	if ((*stl_map.rbegin()).first == (*ft_map.rbegin()).first)
 		std::cout << GREEN << std::endl << "=> rbegin() first [OK]" << std::endl;
@@ -198,7 +198,7 @@ int main(int argc, char **argv)
 	std::cout << "[FT]  rbegin().second = " << (*ft_map.rbegin()).second << std::endl << std::endl;
 	std::cin.get();
 	
-	std::cout << BOLD << "==============================" << std::endl;
+	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Const Iterator rbegin(): " << RESET << std::endl;
 	std::map<int, std::string>::const_reverse_iterator stl_map_const3 = stl_map.rbegin();
 	ft::map<int, std::string>::const_reverse_iterator ft_map_const3 = ft_map.rbegin();
@@ -214,6 +214,99 @@ int main(int argc, char **argv)
 		std::cout << RED << "=> const rbegin() second [ERROR]" << std::endl;
 	std::cout << "[STL] const rbegin().second = " << (*stl_map_const3).second << std::endl;
 	std::cout << "[FT]  const rbegin().second = " << (*ft_map_const3).second << std::endl << std::endl;
+	std::cin.get();
+	
+	std::cout << RESET << BOLD << "==============================" << std::endl;
+	std::cout << std::endl << "Iterator rend(): " << RESET << std::endl;
+	if ((*stl_map.rend()).first == (*ft_map.rend()).first)
+		std::cout << GREEN << std::endl << "=> rend() first [OK]" << std::endl;
+	else
+		std::cout << RED << "=> rend() first [ERROR]" << std::endl;
+	std::cout << "[STL] rend().first = " << (*stl_map.rend()).first << std::endl;
+	std::cout << "[FT]  rend().first = " << (*ft_map.rend()).first << std::endl << std::endl;
+	if ((*stl_map.rend()).second == (*ft_map.rend()).second)
+		std::cout << GREEN << std::endl << "=> rend() second [OK]" << std::endl;
+	else
+		std::cout << RED << "=> rend() second [ERROR]" << std::endl;
+	std::cout << "[STL] rend().second = " << (*stl_map.rend()).second << std::endl;
+	std::cout << "[FT]  rend().second = " << (*ft_map.rend()).second << std::endl << std::endl;
+	std::cin.get();
+	
+	std::cout << RESET << BOLD << "==============================" << std::endl;
+	std::cout << std::endl << "Const Iterator rend(): " << RESET << std::endl;
+	std::map<int, std::string>::const_reverse_iterator stl_map_const4 = stl_map.rend();
+	ft::map<int, std::string>::const_reverse_iterator ft_map_const4 = ft_map.rend();
+	if ((*stl_map_const4).first == (*ft_map_const4).first)
+		std::cout << GREEN << std::endl << "=> const rend() first [OK]" << std::endl;
+	else
+		std::cout << RED << "=> const rend() first [ERROR]" << std::endl;
+	std::cout << "[STL] const rend().first = " << (*stl_map_const4).first << std::endl;
+	std::cout << "[FT]  const rend().first = " << (*ft_map_const4).first << std::endl << std::endl;
+	if ((*stl_map_const4).second == (*ft_map_const4).second)
+		std::cout << GREEN << std::endl << "=> const rend() second [OK]" << std::endl;
+	else
+		std::cout << RED << "=> const rend() second [ERROR]" << std::endl;
+	std::cout << "[STL] const rend().second = " << (*stl_map_const4).second << std::endl;
+	std::cout << "[FT]  const rend().second = " << (*ft_map_const4).second << std::endl << std::endl;
+	std::cin.get();
+	
+	std::cout << RESET << BOLD << "==============================" << std::endl;
+	std::cout << std::endl << "Iterator operator[]: " << RESET << std::endl;
+	if (stl_map[-9] == ft_map[-9])
+		std::cout << GREEN << std::endl << "=> const operator[] test 1 [OK]" << std::endl;
+	else
+		std::cout << RED << "=> const operator[] test 1 [ERROR]" << std::endl;
+	stl_map[-9] = "test";
+	ft_map[-9] = "test";
+	if (stl_map[-9] == ft_map[-9])
+		std::cout << GREEN << std::endl << "=> const operator[] test 2 [OK]" << std::endl;
+	else
+		std::cout << RED << "=> const operator[] test 2 [ERROR]" << std::endl;
+	std::cout << "[STL] stl_map[-9] = " << stl_map[-9] << std::endl;
+	std::cout << "[FT]  stl_map[-9] = " << ft_map[-9] << std::endl << std::endl;
+	std::cin.get();
+	
+	std::cout << RESET << BOLD << "==============================" << std::endl;
+	std::cout << std::endl << "Insert: " << RESET << std::endl;
+	stl_map.insert(std::make_pair(1234, "42"));
+	ft_map.insert(ft::make_pair(1234, "42"));
+	checkMapsDiff(stl_map, ft_map);
+	std::cin.get();
+	
+	std::cout << RESET << BOLD << "==============================" << std::endl;
+	std::cout << std::endl << "Insert Range: " << RESET << std::endl;
+	stl_map.insert(stl_map.begin(), stl_map.begin());
+	ft_map.insert(ft_map.begin(), ft_map.begin());
+	checkMapsDiff(stl_map, ft_map);
+	std::cin.get();
+	
+	std::cout << RESET << BOLD << "==============================" << std::endl;
+	std::cout << std::endl << "Erase (begin): " << RESET << std::endl;
+	stl_map.erase(stl_map.begin());
+	ft_map.erase(ft_map.begin());
+	checkMapsDiff(stl_map, ft_map);
+	std::cin.get();
+	
+	std::cout << RESET << BOLD << "==============================" << std::endl;
+	std::cout << std::endl << "Erase key (42): " << RESET << std::endl;
+	stl_map.erase(42);
+	ft_map.erase(42);
+	checkMapsDiff(stl_map, ft_map);
+	std::cin.get();
+	
+	std::cout << RESET << BOLD << "==============================" << std::endl;
+	std::cout << std::endl << "Swap: " << RESET << std::endl;
+	stl_map.swap(stl_map_copy);
+	ft_map.swap(ft_map_copy);
+	checkMapsDiff(stl_map, ft_map);
+	checkMapsDiff(stl_map_copy, ft_map_copy);
+	std::cin.get();
+	
+	std::cout << RESET << BOLD << "==============================" << std::endl;
+	std::cout << std::endl << "Clear: " << RESET << std::endl;
+	stl_map.clear();
+	ft_map.clear();
+	checkMapsDiff(stl_map, ft_map);
 	std::cin.get();
 	
 }
