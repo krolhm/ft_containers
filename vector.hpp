@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:45:56 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/07 17:24:56 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/14 12:14:50 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include "common/iterator.hpp"
 # include "common/enable_if.hpp"
 # include "common/is_integral.hpp"
+
+// For your vector implementation, it is not mandatory to code the vector<bool> specialization.
 
 namespace ft
 {
