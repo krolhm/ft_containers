@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 17:01:55 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/14 11:49:38 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/14 11:50:16 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ void checkMapsDiff(std::map<T1, T2>& stl_map, ft::map<T1, T2>& ft_map)
 
 void map_test()
 {
-	(void)argc;
-	(void)argv;
 	std::cout << BOLD << "MAP TESTS: " << RESET << std::endl;
 
 	std::cout << RESET << BOLD << "==============================" << std::endl;
