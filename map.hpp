@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:45:26 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/14 11:19:20 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/14 11:21:14 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -298,7 +298,7 @@ namespace ft
 			Node*					right;
 			Node*					parent;
 
-			Node() : pair(pair()), left(nullptr), right(nullptr), parent(nullptr) {}
+			Node() : pair(pair()), left(u_nullptr), right(u_nullptr), parent(u_nullptr) {}
 			Node(ft::pair<Key, T> newPair, Node* newLeft, Node* newRight, Node* newParent) :
 			pair(newPair), left(newLeft), right(newRight), parent(newParent) {}
 		}	TreeNode;
@@ -310,7 +310,7 @@ namespace ft
 			TreeNode* it;
 			friend class map<Key, T, Compare>;
 		public:
-			MapIterator() : it(nullptr) {};
+			MapIterator() : it(u_nullptr) {};
 			MapIterator(TreeNode* p) : it(p) {};
 			MapIterator(MapIterator<V> const & src)
 			{
@@ -405,7 +405,7 @@ namespace ft
 			TreeNode* it;
 			friend class map<Key, T>;
 		public:
-			ReverseMapIterator() : it(nullptr) {};
+			ReverseMapIterator() : it(u_nullptr) {};
 			ReverseMapIterator(TreeNode* p) : it(p) {};
 			ReverseMapIterator(ReverseMapIterator<V> const & src)
 			{
@@ -521,17 +521,17 @@ namespace ft
 
 	public:
 		explicit map(const key_compare& comp = key_compare()) :
-		_head(nullptr), _last(nullptr), _size(0), _comp(comp) {}
+		_head(u_nullptr), _last(u_nullptr), _size(0), _comp(comp) {}
 
 		template <class InputIterator>
 		map(InputIterator first, InputIterator last, const key_compare& comp = key_compare()) :
-		_head(nullptr), _last(nullptr), _size(0), _comp(comp)
+		_head(u_nullptr), _last(u_nullptr), _size(0), _comp(comp)
 		{
 			insert(first, last);
 		}
 
 		map(const map& x) :
-		_head(nullptr), _last(nullptr), _size(0), _comp(x._comp)
+		_head(u_nullptr), _last(u_nullptr), _size(0), _comp(x._comp)
 		{
 			for (const_iterator it = x.begin(); it != x.end(); it++)
 				insert(end(), *it);
@@ -577,12 +577,12 @@ namespace ft
 
 		iterator end()
 		{
-			return iterator(nullptr);
+			return iterator(u_nullptr);
 		}
 
 		const_iterator end() const
 		{
-			return const_iterator(nullptr);
+			return const_iterator(u_nullptr);
 		}
 
 		reverse_iterator rbegin()
@@ -609,12 +609,12 @@ namespace ft
 
 		reverse_iterator rend()
 		{
-			return reverse_iterator(nullptr);
+			return reverse_iterator(u_nullptr);
 		}
 
 		const_reverse_iterator rend() const
 		{
-			return const_reverse_iterator(nullptr);
+			return const_reverse_iterator(u_nullptr);
 		}
 
 
@@ -646,7 +646,7 @@ namespace ft
 			if (!node)
 			{
 				_head = _allocator.allocate(1);
-				_allocator.construct(_head, TreeNode(val, nullptr, nullptr, nullptr));
+				_allocator.construct(_head, TreeNode(val, u_nullptr, u_nullptr, u_nullptr));
 				_size++;
 				_last = _head;
 				return ft::make_pair(iterator(_head), true);
@@ -658,7 +658,7 @@ namespace ft
 					if (!node->left)
 					{
 						node->left = _allocator.allocate(1);
-						_allocator.construct(node->left, TreeNode(val, nullptr, nullptr, node));
+						_allocator.construct(node->left, TreeNode(val, u_nullptr, u_nullptr, node));
 						_size++;
 						return ft::make_pair(iterator(node->left), true);
 					}
@@ -669,7 +669,7 @@ namespace ft
 					if (!node->right)
 					{
 						node->right = _allocator.allocate(1);
-						_allocator.construct(node->right, TreeNode(val, nullptr, nullptr, node));
+						_allocator.construct(node->right, TreeNode(val, u_nullptr, u_nullptr, node));
 						_size++;
 						if (node == _last)
 							_last = node->right;
@@ -687,7 +687,7 @@ namespace ft
 			if (position == end() && _head && _comp(_last->pair.first, val.first))
 			{
 				_last->right = _allocator.allocate(1);
-				_allocator.construct(_last->right, TreeNode(val, nullptr, nullptr, _last));
+				_allocator.construct(_last->right, TreeNode(val, u_nullptr, u_nullptr, _last));
 				_size++;
 				_last = _last->right;
 				return iterator(_last);
@@ -719,12 +719,12 @@ namespace ft
 					TreeNode *temp = node;
 					node = node->parent;
 					if (temp == node->right)
-						node->right = nullptr;
+						node->right = u_nullptr;
 					else
-						node->left = nullptr;
+						node->left = u_nullptr;
 				}
 				else
-					_head = nullptr;
+					_head = u_nullptr;
 			}
 			else if (node == _head)
 			{
@@ -732,7 +732,7 @@ namespace ft
 					_head = node->left;
 				else
 					_head = node->right;
-				_head->parent = nullptr;
+				_head->parent = u_nullptr;
 			}
 			else if (!node->left)
 			{
