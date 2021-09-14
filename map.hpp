@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:45:26 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/14 11:12:01 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/14 11:19:20 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,851 +281,681 @@
 // 	};
 // }
 
-// #endif
+
 
 namespace ft
 {
-
-template < class Key, class T, class Alloc = std::allocator<ft::pair <Key const,T> > >
-	struct BinaryTree {
-	public:
-			typedef 			Key													key_type;
-			typedef 			T													mapped_type;
-			typedef 			ft::pair<key_type const, mapped_type>				value_type;
-			typedef 			Alloc												allocator_type;
-			typedef typename	allocator_type::pointer								pointer;
-
-			BinaryTree(const allocator_type& alloc = allocator_type()) {
-				this->_allocator = alloc;
-				this->_value = this->_allocator.allocate(1);
-				this->_allocator.construct(this->_value, value_type());
-
-				this->_parent = nullptr;
-				this->_lh = nullptr;
-				this->_rh = nullptr;
-				this->_last_element = 0;
-				this->_first_element = 0;
-			};
-			
-			~BinaryTree() {
-				this->_allocator.destroy(this->_value);
-				this->_allocator.deallocate(this->_value, 1);
-			}
-
-			BinaryTree(const value_type & val, BinaryTree * parent, const allocator_type& alloc = allocator_type()) {
-				this->_allocator = alloc;
-				this->_value = this->_allocator.allocate(1);
-				this->_allocator.construct(this->_value, val);
-
-				this->_parent = parent;
-				this->_lh = nullptr;
-				this->_rh = nullptr;
-				this->_last_element = 0;
-				this->_first_element = 0;
-			};
-			
-			BinaryTree(const BinaryTree & src) {
-				*this = src;
-			};
-
-			BinaryTree &operator=(BinaryTree const &src) {
-				if (this != &src) {
-					this->_allocator = src._allocator;
-					this->_value = src._value;
-					this->_parent = src._parent;
-					this->_lh = src._lh;
-					this->_rh = src._rh;
-					this->_last_element = src._last_element;
-					this->_first_element = src._first_element;
-				}
-				return (*this);
-			};
-
-
-			void 		setLastElementFlag() { this->_last_element = 1; };
-			void 		setFirstElementFlag() { this->_first_element = 1; };
-			void 		removeLastElementFlag() { this->_last_element = 0; };
-			void 		removeFirstElementFlag() { this->_first_element = 0; };
-			bool 		isLastElement() const { return (this->_last_element); };
-			bool 		isFirstElement() const { return (this->_first_element); };
-			
-			BinaryTree	*createFirstElemet(BinaryTree * parent) const {
-				BinaryTree *ret = new BinaryTree();
-				ret->_parent = parent;
-				ret->setFirstElementFlag();
-				return (ret);
-			};
-
-			BinaryTree	*createLastElemet(BinaryTree * parent) const {
-				BinaryTree *ret = new BinaryTree();
-				ret->_parent = parent;
-				ret->setLastElementFlag();
-				return (ret);
-			};
-	
-			allocator_type	_allocator;
-			pointer			_value;
-			BinaryTree		*_parent;
-			BinaryTree		*_lh;
-			BinaryTree		*_rh;
-			bool			_last_element;
-			bool			_first_element;
-	};
-
-
-
-	template <class Key, class T, class Compare = std::less<Key>, class Alloc = std::allocator<ft::pair<Key const, T> > >
+	template <class Key, class T, class Compare = std::less<Key> >
 	class map
 	{
-	public:
-		typedef Key key_type;
-		typedef T mapped_type;
-		typedef ft::pair<key_type const, mapped_type> value_type;
-
-		typedef Compare key_compare;
-
-		typedef Alloc allocator_type;
-		typedef typename allocator_type::reference reference;
-		typedef typename allocator_type::const_reference const_reference;
-		typedef typename allocator_type::pointer pointer;
-		typedef typename allocator_type::const_pointer const_pointer;
-
-		typedef ft::BidirectionalIteratorMap<Key, T> iterator;
-		typedef ft::BidirectionalIteratorMapConst<Key, T> const_iterator;
-		typedef ft::BidirectionalReverseIteratorMap<Key, T> reverse_iterator;
-		typedef ft::BidirectionalReverseIteratorMapConst<Key, T> const_reverse_iterator;
-
-		typedef std::ptrdiff_t difference_type;
-		typedef size_t size_type;
 
 	private:
-		class value_compare : std::binary_function<value_type, value_type, bool>
+
+		typedef struct Node
 		{
-			friend class map<key_type, mapped_type, key_compare, allocator_type>;
+			ft::pair<const Key, T>	pair;
+			Node*					left;
+			Node*					right;
+			Node*					parent;
 
-		protected:
-			Compare _comp;
-			value_compare(Compare c) : _comp(c) {}
+			Node() : pair(pair()), left(nullptr), right(nullptr), parent(nullptr) {}
+			Node(ft::pair<Key, T> newPair, Node* newLeft, Node* newRight, Node* newParent) :
+			pair(newPair), left(newLeft), right(newRight), parent(newParent) {}
+		}	TreeNode;
 
+		template <typename V>
+		class MapIterator
+		{
+		private:
+			TreeNode* it;
+			friend class map<Key, T, Compare>;
 		public:
-			typedef bool result_type;
-			typedef value_type first_argument_type;
-			typedef value_type second_argument_type;
-			bool operator()(const value_type &x, const value_type &y) const
+			MapIterator() : it(nullptr) {};
+			MapIterator(TreeNode* p) : it(p) {};
+			MapIterator(MapIterator<V> const & src)
 			{
-				return _comp(x.first, y.first);
+				*this = src;
+			};
+			MapIterator<V> & operator=(MapIterator<V> const & src)
+			{
+				if (this != &src)
+					it = src.it;
+				return *this;
 			}
+
+			bool operator==(MapIterator<V> const & src)
+			{
+				return it == src.it;
+			}
+			bool operator!=(MapIterator<V> const & src)
+			{
+				return it != src.it;
+			}
+
+			V & operator*() const
+			{
+				return it->pair;
+			}
+			V * operator->() const
+			{
+				return &(it->pair);
+			}
+
+			MapIterator & operator++()
+			{
+				if (it->right)
+				{
+					it = it->right;
+					while (it->left)
+						it = it->left;
+				}
+				else
+				{
+					TreeNode *temp = it;
+					it = it->parent;
+					while (it && temp == it->right)
+					{
+						temp = it;
+						it = it->parent;
+					}
+				}
+				return *this;
+			}
+
+			MapIterator & operator--()
+			{
+				if (it->left)
+				{
+					it = it->left;
+					while (it->right)
+						it = it->right;
+				}
+				else
+				{
+					TreeNode *temp = it;
+					it = it->parent;
+					while (it && temp == it->left)
+					{
+						temp = it;
+						it = it->parent;
+					}
+				}
+				return *this;
+			}
+
+			MapIterator operator++(int)
+			{
+				MapIterator<V> temp = *this;
+				++(*this);
+				return temp;
+			}
+
+			MapIterator operator--(int)
+			{
+				MapIterator<V> temp = *this;
+				--(*this);
+				return temp;
+			}
+		};
+
+		template <typename V>
+		class ReverseMapIterator
+		{
+		private:
+			TreeNode* it;
+			friend class map<Key, T>;
+		public:
+			ReverseMapIterator() : it(nullptr) {};
+			ReverseMapIterator(TreeNode* p) : it(p) {};
+			ReverseMapIterator(ReverseMapIterator<V> const & src)
+			{
+				*this = src;
+			};
+			ReverseMapIterator<V> & operator=(ReverseMapIterator<V> const & src)
+			{
+				if (this != &src)
+					it = src.it;
+				return *this;
+			}
+
+			bool operator==(ReverseMapIterator<V> const & src)
+			{
+				return it == src.it;
+			}
+			bool operator!=(ReverseMapIterator<V> const & src)
+			{
+				return it != src.it;
+			}
+
+			V & operator*()
+			{
+				return it->pair;
+			}
+			V * operator->()
+			{
+				return &(it->pair);
+			}
+
+			ReverseMapIterator & operator++()
+			{
+				if (it->left)
+				{
+					it = it->left;
+					while (it->right)
+						it = it->right;
+				}
+				else
+				{
+					TreeNode *temp = it;
+					it = it->parent;
+					while (it && temp == it->left)
+					{
+						temp = it;
+						it = it->parent;
+					}
+				}
+				return *this;
+			}
+
+			ReverseMapIterator & operator--()
+			{
+				if (it->right)
+				{
+					it = it->right;
+					while (it->left)
+						it = it->left;
+				}
+				else
+				{
+					TreeNode *temp = it;
+					it = it->parent;
+					while (it && temp == it->right)
+					{
+						temp = it;
+						it = it->parent;
+					}
+				}
+				return *this;
+			}
+
+			ReverseMapIterator operator++(int)
+			{
+				ReverseMapIterator<V> temp = *this;
+				++(*this);
+				return temp;
+			}
+
+			ReverseMapIterator operator--(int)
+			{
+				ReverseMapIterator<V> temp = *this;
+				--(*this);
+				return temp;
+			}
+
 		};
 
 	public:
-		// INITIALIZATION INITIALIZATION INITIALIZATION INITIALIZATION INITIALIZATION INITIALIZATION INITIALIZATION INITIALIZATION  //
+		typedef Key												key_type;
+		typedef T												mapped_type;
+		typedef pair<const Key, T>								value_type;
+		typedef Compare											key_compare;
+		typedef	std::allocator<TreeNode>						allocator_type;
+		typedef value_type&										reference;
+		typedef const value_type&								const_reference;
+		typedef value_type*										pointer;
+		typedef const value_type*								const_pointer;
+		typedef	MapIterator<value_type>							iterator;
+		typedef MapIterator<const value_type>					const_iterator;
+		typedef	ReverseMapIterator<value_type>					reverse_iterator;
+		typedef	ReverseMapIterator<const value_type>			const_reverse_iterator;
+		typedef ptrdiff_t										difference_type;
+		typedef size_t											size_type;
 
-		explicit map(const key_compare &comp = key_compare(),
-					 const allocator_type &alloc = allocator_type())
+	private:
+		TreeNode*			_head;
+		TreeNode*			_last;
+		size_type			_size;
+		allocator_type		_allocator;
+		key_compare			_comp;
+
+
+	public:
+		explicit map(const key_compare& comp = key_compare()) :
+		_head(nullptr), _last(nullptr), _size(0), _comp(comp) {}
+
+		template <class InputIterator>
+		map(InputIterator first, InputIterator last, const key_compare& comp = key_compare()) :
+		_head(nullptr), _last(nullptr), _size(0), _comp(comp)
 		{
-			this->_allocator = alloc;
-			this->_comp = comp;
-			this->_size = 0;
-			this->_root = new BinaryTree<key_type const, mapped_type>;
-			this->_root->setLastElementFlag();
-			this->_root->_lh = this->_root->createFirstElemet(this->_root);
-			this->_root->_rh = nullptr;
-		};
+			insert(first, last);
+		}
 
-		map(iterator first, iterator last, const key_compare &comp = key_compare(),
-			const allocator_type &alloc = allocator_type())
+		map(const map& x) :
+		_head(nullptr), _last(nullptr), _size(0), _comp(x._comp)
 		{
-			this->_allocator = alloc;
-			this->_comp = comp;
-			this->_size = 0;
-			this->_root = new BinaryTree<key_type const, mapped_type>;
-			this->_root->setLastElementFlag();
-			this->_root->_lh = this->_root->createFirstElemet(this->_root);
-			this->_root->_rh = nullptr;
+			for (const_iterator it = x.begin(); it != x.end(); it++)
+				insert(end(), *it);
+		}
 
-			for (; first != last; first++)
+		~map()
+		{
+			clear();
+		}
+
+		map& operator= (const map& x)
+		{
+			if (this != &x)
 			{
-				this->insert(*first);
+				clear();
+				for (const_iterator it = x.begin(); it != x.end(); it++)
+					insert(end(), *it);
 			}
-		};
-
-		map(const map &src)
-		{
-			this->_root = new BinaryTree<key_type const, mapped_type>;
-			*this = src;
-		};
-
-		virtual ~map()
-		{
-			this->clear();
-			delete (this->_root->_lh);
-			delete (this->_root->_rh);
-			delete (this->_root);
-		};
-
-		map &operator=(const map &src)
-		{
-			if (this != &src)
-			{
-				if (this->_size)
-				{
-					this->clear();
-				}
-				this->_allocator = src._allocator;
-				this->_comp = src._comp;
-				this->_size = 0;
-				for (const_iterator it = src.begin(); it != src.end(); it++)
-				{
-					this->insert(*it);
-				}
-			}
-			return (*this);
-		};
-
-		// ITERATORS ITERATORS ITERATORS ITERATORS ITERATORS ITERATORS ITERATORS ITERATORS ITERATORS ITERATORS ITERATORS ITERATORS //
+			return *this;
+		}
 
 		iterator begin()
 		{
-			BinaryTree<key_type const, mapped_type> *tmp = this->_root;
-
-			if (this->_size == 0)
-				return (this->end());
-			while (tmp && tmp->_lh && !tmp->_lh->isFirstElement())
+			TreeNode* temp = _head;
+			if (temp)
 			{
-				tmp = tmp->_lh;
+				while (temp->left)
+					temp = temp->left;
 			}
-			return (iterator(*tmp));
-		};
+			return iterator(temp);
+		}
 
 		const_iterator begin() const
 		{
-			BinaryTree<key_type const, mapped_type> *tmp = this->_root;
-
-			while (tmp && tmp->_lh && !tmp->_lh->isFirstElement())
+			TreeNode* temp = _head;
+			if (temp)
 			{
-				tmp = tmp->_lh;
+				while (temp->left)
+					temp = temp->left;
 			}
-			return (const_iterator(*tmp));
-		};
+			return const_iterator(temp);
+		}
 
 		iterator end()
 		{
-			BinaryTree<key_type const, mapped_type> *tmp = this->_root;
-
-			while (tmp && !tmp->isLastElement())
-			{
-				tmp = tmp->_rh;
-			}
-			return (iterator(*tmp));
-		};
+			return iterator(nullptr);
+		}
 
 		const_iterator end() const
 		{
-			BinaryTree<key_type const, mapped_type> *tmp = this->_root;
-
-			while (tmp && !tmp->isLastElement())
-			{
-				tmp = tmp->_rh;
-			}
-			return (const_iterator(*tmp));
-		};
+			return const_iterator(nullptr);
+		}
 
 		reverse_iterator rbegin()
 		{
-			BinaryTree<key_type const, mapped_type> *tmp = this->_root;
-
-			while (tmp && tmp->_rh && !tmp->_rh->isLastElement())
+			TreeNode* temp = _head;
+			if (temp)
 			{
-				tmp = tmp->_rh;
+				while (temp->right)
+					temp = temp->right;
 			}
-			return (reverse_iterator(*tmp));
-		};
+			return reverse_iterator(temp);
+		}
 
 		const_reverse_iterator rbegin() const
 		{
-			BinaryTree<key_type const, mapped_type> *tmp = this->_root;
-
-			while (tmp && tmp->_rh && !tmp->_rh->isLastElement())
+			TreeNode* temp = _head;
+			if (temp)
 			{
-				tmp = tmp->_rh;
+				while (temp->right)
+					temp = temp->right;
 			}
-			return (const_reverse_iterator(*tmp));
-		};
+			return const_reverse_iterator(temp);
+		}
 
 		reverse_iterator rend()
 		{
-			BinaryTree<key_type const, mapped_type> *tmp = this->_root;
-
-			while (tmp && !tmp->isFirstElement())
-			{
-				tmp = tmp->_lh;
-			}
-			return (reverse_iterator(*tmp));
-		};
+			return reverse_iterator(nullptr);
+		}
 
 		const_reverse_iterator rend() const
 		{
-			BinaryTree<key_type const, mapped_type> *tmp = this->_root;
+			return const_reverse_iterator(nullptr);
+		}
 
-			while (tmp && !tmp->isFirstElement())
-			{
-				tmp = tmp->_lh;
-			}
-			return (const_reverse_iterator(*tmp));
-		};
 
-		// CAPACITY CAPACITY CAPACITY CAPACITY CAPACITY CAPACITY CAPACITY CAPACITY CAPACITY CAPACITY CAPACITY CAPACITY //
 
 		bool empty() const
 		{
-			return (!this->_size);
-		};
+			return _size == 0;
+		}
 
 		size_type size() const
 		{
-			return (this->_size);
-		};
+			return _size;
+		}
 
 		size_type max_size() const
 		{
-			return (this->_allocator.max_size() / sizeof(BinaryTree<key_type const, mapped_type>));
-		};
+			return (std::numeric_limits<difference_type>::max() / sizeof(TreeNode));
+		}
 
-		// ELEMENT_ACCESS ELEMENT_ACCESS ELEMENT_ACCESS ELEMENT_ACCESS ELEMENT_ACCESS ELEMENT_ACCESS ELEMENT_ACCESS ELEMENT_ACCESS //
 
-		mapped_type &operator[](const key_type &k)
+		mapped_type& operator[] (const key_type& k)
 		{
-			BinaryTree<key_type const, mapped_type> *tmp = this->_root;
-			iterator ret;
+			return (*((this->insert(ft::make_pair(k,mapped_type()))).first)).second;
+		}
 
-			if (this->_size == 0)
+		pair<iterator,bool> insert (const value_type& val)
+		{
+			TreeNode* node = _head;
+			if (!node)
 			{
-				ret = (this->insert(ft::make_pair<key_type, mapped_type>(k, mapped_type()))).first;
-				return (ret->second);
+				_head = _allocator.allocate(1);
+				_allocator.construct(_head, TreeNode(val, nullptr, nullptr, nullptr));
+				_size++;
+				_last = _head;
+				return ft::make_pair(iterator(_head), true);
 			}
-			while (tmp)
+			while (true)
 			{
-				if (this->_comp(k, tmp->_value->first) && tmp->_lh && !tmp->_lh->isFirstElement())
+				if (_comp(val.first, node->pair.first))
 				{
-					tmp = tmp->_lh;
+					if (!node->left)
+					{
+						node->left = _allocator.allocate(1);
+						_allocator.construct(node->left, TreeNode(val, nullptr, nullptr, node));
+						_size++;
+						return ft::make_pair(iterator(node->left), true);
+					}
+					node = node->left;
 				}
-				else if (this->_comp(tmp->_value->first, k) && tmp->_rh && !tmp->_rh->isLastElement())
+				else if (_comp(node->pair.first, val.first))
 				{
-					tmp = tmp->_rh;
-				}
-				else if (!this->_comp(tmp->_value->first, k) && !this->_comp(k, tmp->_value->first))
-				{
-					break;
+					if (!node->right)
+					{
+						node->right = _allocator.allocate(1);
+						_allocator.construct(node->right, TreeNode(val, nullptr, nullptr, node));
+						_size++;
+						if (node == _last)
+							_last = node->right;
+						return ft::make_pair(iterator(node->right), true);
+					}
+					node = node->right;
 				}
 				else
-				{
-					ret = (this->insert(ft::make_pair<key_type, mapped_type>(k, mapped_type()))).first;
-					return (ret->second);
-				}
+					return ft::make_pair(iterator(node), false);
 			}
-			return (tmp->_value->second);
-		};
+		}
 
-		// MODIFIERS MODIFIERS MODIFIERS MODIFIERS MODIFIERS MODIFIERS MODIFIERS MODIFIERS MODIFIERS MODIFIERS MODIFIERS MODIFIERS //
-
-		ft::pair<iterator, bool> insert(const value_type &val)
+		iterator insert (iterator position, const value_type& val)
 		{
-			if (this->_size == 0)
+			if (position == end() && _head && _comp(_last->pair.first, val.first))
 			{
-				this->_allocator.construct(this->_root->_value, val);
-				this->_root->removeLastElementFlag();
-				delete this->_root->_rh;
-				delete this->_root->_lh;
-				this->_root->_rh = this->_root->createLastElemet(this->_root);
-				this->_root->_lh = this->_root->createFirstElemet(this->_root);
-				this->_size++;
-				return (ft::make_pair<iterator, bool>((*this->_root), true));
+				_last->right = _allocator.allocate(1);
+				_allocator.construct(_last->right, TreeNode(val, nullptr, nullptr, _last));
+				_size++;
+				_last = _last->right;
+				return iterator(_last);
 			}
+			return insert(val).first;
+		}
 
-			BinaryTree<key_type const, mapped_type> *tmp = this->_root;
+		template <class InputIterator>
+		void insert (InputIterator first, InputIterator last)
+		{
+			for (InputIterator temp = first; temp != last; temp++)
+				insert(*temp);
+		}
 
-			while (tmp)
+		void erase (iterator position)
+		{
+			TreeNode* node = position.it;
+
+			if (_last == node)
 			{
-				if (this->_comp(val.first, tmp->_value->first))
+				iterator newLast = position;
+				newLast--;
+				_last = newLast.it;
+			}
+			if (!node->right && !node->left)
+			{
+				if (node->parent)
 				{
-					if (tmp->_lh && !tmp->_lh->isFirstElement())
-					{
-						tmp = tmp->_lh;
-					}
-					else if (!tmp->_lh)
-					{
-						tmp->_lh = new BinaryTree<key_type const, mapped_type>(val, tmp);
-						tmp = tmp->_lh;
-						break;
-					}
+					TreeNode *temp = node;
+					node = node->parent;
+					if (temp == node->right)
+						node->right = nullptr;
 					else
-					{
-						tmp->_lh->removeFirstElementFlag();
-						tmp->_allocator.construct(tmp->_lh->_value, val);
-						tmp->_lh->_lh = tmp->createFirstElemet(tmp->_lh);
-						tmp = tmp->_lh;
-						break;
-					}
-				}
-				else if (this->_comp(tmp->_value->first, val.first))
-				{
-					if (!tmp->_rh)
-					{
-						tmp->_rh = new BinaryTree<key_type const, mapped_type>(val, tmp);
-						tmp = tmp->_rh;
-						break;
-					}
-					else if (!tmp->_rh->isLastElement())
-					{
-						tmp = tmp->_rh;
-					}
-					else
-					{
-						tmp->_rh->removeLastElementFlag();
-						tmp->_allocator.construct(tmp->_rh->_value, val);
-						tmp->_rh->_rh = tmp->createLastElemet(tmp->_rh);
-						tmp = tmp->_rh;
-						break;
-					}
+						node->left = nullptr;
 				}
 				else
-				{
-					return (ft::make_pair<iterator, bool>(*tmp, false));
-				}
+					_head = nullptr;
 			}
-			this->_size++;
-			return (ft::make_pair<iterator, bool>(*tmp, true));
-		};
-
-		iterator insert(iterator position, const value_type &val)
-		{
-			static_cast<void>(position);
-			return (this->insert(val).first);
-		};
-
-		void insert(iterator first, iterator last)
-		{
-			for (; first != last; first++)
+			else if (node == _head)
 			{
-				this->insert(*first);
+				if (node->left)
+					_head = node->left;
+				else
+					_head = node->right;
+				_head->parent = nullptr;
 			}
-		};
-
-		void erase(iterator position)
-		{
-			char side;
-			BinaryTree<key_type const, mapped_type> *erase_el = this->_private_find(position->first, &side);
-			BinaryTree<key_type const, mapped_type> *tmp;
-			if (erase_el == nullptr || this->_size == 0)
-				return;
-
-			this->_size -= 1;
-			if (this->_size == 0)
+			else if (!node->left)
 			{
-				tmp = this->_root;
-				this->_root = this->_root->_lh;
-				this->_root->_rh = tmp->_rh;
-				this->_root->_parent = nullptr;
-				delete tmp;
-				return;
+				TreeNode *temp = node;
+				node = node->parent;
+				if (temp == node->right)
+					node->right = temp->right;
+				else
+					node->left = temp->right;
+				temp->right->parent = node;
 			}
-			else if (!this->_comp(position->first, this->_root->_value->first) && !this->_comp(this->_root->_value->first, position->first))
-			{ // deleting root
-				if (this->_root->_rh && !this->_root->_rh->isLastElement())
-				{
-					erase_el = this->_root;
-					this->_root = this->_root->_rh;
-					this->_root->_parent = nullptr;
-					tmp = this->_root;
-					while (tmp->_lh)
-						tmp = tmp->_lh;
-					tmp->_lh = erase_el->_lh;
-					if (tmp->_lh)
-						tmp->_lh->_parent = tmp;
-					delete erase_el;
-				}
-				else if (!this->_root->_rh || this->_root->_rh->isLastElement())
-				{
-					erase_el = this->_root;
-					this->_root = this->_root->_lh;
-					tmp = this->_root;
-					while (tmp->_rh)
-						tmp = tmp->_rh;
-					tmp->_rh = erase_el->_rh;
-					if (tmp->_rh)
-						tmp->_rh->_parent = tmp;
-					delete erase_el;
-				}
-				return;
-			}
-			else if (this->_comp(position->first, this->_root->_value->first))
+			else if (!node->right)
 			{
-				if (side == 'l')
-				{
-					if (!erase_el->_rh)
-					{ // situation 1, 2
-						erase_el->_parent->_lh = erase_el->_lh;
-						if (erase_el->_lh)
-							erase_el->_lh->_parent = erase_el->_parent;
-						delete erase_el;
-					}
-					else if (!erase_el->_lh || erase_el->_lh->isFirstElement())
-					{ // situation 3, 4
-						erase_el->_parent->_lh = erase_el->_rh;
-						if (erase_el->_rh)
-							erase_el->_rh->_parent = erase_el->_parent;
-						tmp = erase_el->_rh;
-						while (tmp->_lh)
-							tmp = tmp->_lh;
-						tmp->_lh = erase_el->_lh;
-						if (tmp->_lh)
-							tmp->_lh->_parent = tmp;
-					}
-					else if (erase_el->_lh && erase_el->_rh)
-					{ // situation 5
-						erase_el->_parent->_lh = erase_el->_rh;
-						if (erase_el->_rh)
-							erase_el->_rh->_parent = erase_el->_parent;
-						tmp = erase_el->_rh;
-						while (tmp->_lh)
-							tmp = tmp->_lh;
-						tmp->_lh = erase_el->_lh;
-						if (tmp->_lh)
-							tmp->_lh->_parent = tmp;
-						delete erase_el;
-					}
-				}
-				else if (side == 'r')
-				{
-					if (!erase_el->_rh)
-					{ // situation 6
-						erase_el->_parent->_rh = erase_el->_lh;
-						if (erase_el->_lh)
-							erase_el->_lh->_parent = erase_el->_parent;
-						delete erase_el;
-					}
-					else if (!erase_el->_lh || erase_el->_lh->isFirstElement())
-					{ // situation 7
-						erase_el->_parent->_rh = erase_el->_rh;
-						if (erase_el->_rh)
-							erase_el->_rh->_parent = erase_el->_parent;
-						tmp = erase_el->_rh;
-						while (tmp->_lh)
-							tmp = tmp->_lh;
-						tmp->_lh = erase_el->_lh;
-						if (tmp->_lh)
-							tmp->_lh->_parent = tmp;
-						delete erase_el;
-					}
-					else if (erase_el->_lh && erase_el->_rh)
-					{ // situation 8
-						erase_el->_parent->_rh = erase_el->_rh;
-						if (erase_el->_rh)
-							erase_el->_rh->_parent = erase_el->_parent;
-						tmp = erase_el->_rh;
-						while (tmp->_lh)
-							tmp = tmp->_lh;
-						tmp->_lh = erase_el->_lh;
-						if (tmp->_lh)
-							tmp->_lh->_parent = tmp;
-						delete erase_el;
-					}
-				}
-				return;
+				TreeNode *temp = node;
+				node = node->parent;
+				if (temp == node->right)
+					node->right = temp->left;
+				else
+					node->left = temp->left;
+				temp->left->parent = node;
 			}
 			else
 			{
-				if (side == 'l')
-				{
-					if (!erase_el->_rh)
-					{ // situation 1
-						erase_el->_parent->_lh = erase_el->_lh;
-						if (erase_el->_lh)
-							erase_el->_lh->_parent = erase_el->_parent;
-						delete erase_el;
-					}
-					else if (!erase_el->_lh)
-					{ // situation 2
-						erase_el->_parent->_lh = erase_el->_rh;
-						if (erase_el->_rh)
-							erase_el->_rh->_parent = erase_el->_parent;
-						delete erase_el;
-					}
-					else if (erase_el->_lh && erase_el->_rh)
-					{ // situation 3
-						erase_el->_parent->_lh = erase_el->_rh;
-						if (erase_el->_rh)
-							erase_el->_rh->_parent = erase_el->_parent;
-						tmp = erase_el->_rh;
-						while (tmp->_lh)
-							tmp = tmp->_lh;
-						tmp->_lh = erase_el->_lh;
-						if (tmp->_lh)
-							tmp->_lh->_parent = tmp;
-						delete erase_el;
-					}
-				}
-				else if (side == 'r')
-				{
-					if ((!erase_el->_rh || erase_el->_rh->isLastElement()) && erase_el->_lh)
-					{ // situation 4
-						erase_el->_parent->_rh = erase_el->_lh;
-						if (erase_el->_lh)
-							erase_el->_lh->_parent = erase_el->_parent;
-						tmp = erase_el->_lh;
-						while (tmp->_rh)
-							tmp = tmp->_rh;
-						tmp->_rh = erase_el->_rh;
-						if (tmp->_rh)
-							tmp->_rh->_parent = tmp;
-						delete erase_el;
-					}
-					else if ((!erase_el->_rh || erase_el->_rh->isLastElement()) && !erase_el->_lh)
-					{ // situation 4
-						erase_el->_parent->_rh = erase_el->_rh;
-						if (erase_el->_rh)
-							erase_el->_rh->_parent = erase_el->_parent;
-						delete erase_el;
-					}
-					else if (!erase_el->_lh)
-					{ // situatin 5
-						erase_el->_parent->_rh = erase_el->_rh;
-						if (erase_el->_rh)
-							erase_el->_rh->_parent = erase_el->_parent;
-						delete erase_el;
-					}
-					else if (erase_el->_lh && erase_el->_rh)
-					{
-						erase_el->_parent->_rh = erase_el->_rh;
-						tmp = erase_el->_rh;
-						if (erase_el->_rh)
-							erase_el->_rh->_parent = erase_el->_parent;
-						while (tmp->_lh)
-							tmp = tmp->_lh;
-						tmp->_lh = erase_el->_lh;
-						if (tmp->_lh)
-							tmp->_lh->_parent = tmp;
-						delete erase_el;
-					}
-				}
-				return;
+				TreeNode *temp = node->right;
+				while (temp->left)
+					temp = temp->left;
+				if (node->right == temp)
+					temp->parent->right = temp->right;
+				else
+					temp->parent->left = temp->right;
+				if (temp->right)
+					temp->right->parent = temp->parent;
+				TreeNode *par = node->parent;
+				temp->parent = par;
+				if (par->right == node)
+					par->right = temp;
+				else
+					par->left = temp;
+				temp->right = node->right;
+				if (node->right)
+					node->right->parent = temp;
+				temp->left = node->left;
+				node->left->parent = temp;
 			}
-		};
+			_allocator.destroy(position.it);
+			_allocator.deallocate(position.it, 1);
+			_size--;
+		}
 
-		size_type erase(const key_type &k)
+		size_type erase (const key_type& k)
 		{
-			iterator it = this->find(k);
-			if (it == this->end())
-				return (0);
-			this->erase(it);
-			return (1);
-		};
-
-		void erase(iterator first, iterator last)
-		{
-			size_type n = 0;
-			for (iterator tmp = first; tmp != last; tmp++)
+			iterator it = find(k);
+			if (it != end())
 			{
-				n++;
+				erase(it);
+				return 1;
 			}
-			for (; n-- > 0; first++)
-			{
-				this->erase(first);
-			}
-		};
+			return 0;
+		}
 
-		void swap(map &x)
+		void erase (iterator first, iterator last)
 		{
-			allocator_type tmp_allocator = this->_allocator;
-			key_compare tmp_comp = this->_comp;
-			size_type tmp_size = this->_size;
-			BinaryTree<key_type const, mapped_type> *tmp_btree = this->_root;
+			for (iterator it = first; it != last; )
+			{
+				iterator temp = it++;
+				erase(temp);
+			}
+		}
 
-			this->_allocator = x._allocator;
-			this->_comp = x._comp;
-			this->_size = x._size;
-			this->_root = x._root;
-
-			x._allocator = tmp_allocator;
-			x._comp = tmp_comp;
-			x._size = tmp_size;
-			x._root = tmp_btree;
-		};
+		void swap (map& x)
+		{
+			TreeNode*	temp_head = _head;
+			TreeNode*	temp_last = _last;
+			size_type	temp_size = _size;
+			_head = x._head;
+			_last = x._last;
+			_size = x._size;
+			x._head = temp_head;
+			x._last = temp_last;
+			x._size = temp_size;
+		}
 
 		void clear()
 		{
-			while (this->_size)
-				this->erase(this->_root->_value->first);
-		};
-
-		// OBSERVERS OBSERVERS OBSERVERS OBSERVERS OBSERVERS OBSERVERS OBSERVERS OBSERVERS OBSERVERS OBSERVERS OBSERVERS  //
+			erase(begin(), end());
+		}
 
 		key_compare key_comp() const
 		{
-			return (this->_comp);
+			return _comp;
+		}
+
+		class value_compare
+		{
+			friend class map;
+		protected:
+			Compare comp;
+			explicit value_compare(Compare c) : comp(c) {}
+		public:
+			value_compare() : comp(key_compare()) {}
+			typedef bool result_type;
+			typedef value_type first_argument_type;
+			typedef value_type second_argument_type;
+			bool operator() (const value_type& x, const value_type& y) const
+			{
+				return comp(x.first, y.first);
+			}
 		};
 
 		value_compare value_comp() const
 		{
-			return (value_compare(key_compare()));
-		};
+			return value_compare();
+		}
 
-		// OPERATIONS OPERATIONS OPERATIONS OPERATIONS OPERATIONS OPERATIONS OPERATIONS OPERATIONS OPERATIONS OPERATIONS //
-
-		iterator find(const key_type &k)
+		iterator find(const key_type& k)
 		{
-			BinaryTree<key_type const, mapped_type> *tmp = this->_root;
-			iterator ret = this->end();
-
-			while (tmp)
+			TreeNode* node = _head;
+			while (node)
 			{
-				if (this->_comp(k, tmp->_value->first) && tmp->_lh && !tmp->_lh->isFirstElement())
-				{
-					tmp = tmp->_lh;
-				}
-				else if (this->_comp(tmp->_value->first, k) && tmp->_rh && !tmp->_rh->isLastElement())
-				{
-					tmp = tmp->_rh;
-				}
-				else if (!this->_comp(tmp->_value->first, k) && !this->_comp(k, tmp->_value->first))
-				{
-					ret = iterator(*tmp);
-					break;
-				}
+				if (_comp(k, node->pair.first))
+					node = node->left;
+				else if (_comp(node->pair.first, k))
+					node = node->right;
 				else
-					return (ret);
+					break;
 			}
-			return (ret);
-		};
+			return iterator(node);
+		}
 
-		const_iterator find(const key_type &k) const
+		const_iterator find (const key_type& k) const
 		{
-			return (const_iterator(this->find(k)));
-		};
-
-		size_type count(const key_type &k) const
-		{
-			BinaryTree<key_type const, mapped_type> *tmp = this->_root;
-
-			while (tmp)
+			TreeNode* node = _head;
+			while (node)
 			{
-				if (this->_comp(k, tmp->_value->first) && tmp->_lh && !tmp->_lh->isFirstElement())
-				{
-					tmp = tmp->_lh;
-				}
-				else if (this->_comp(tmp->_value->first, k) && tmp->_rh && !tmp->_rh->isLastElement())
-				{
-					tmp = tmp->_rh;
-				}
-				else if (!this->_comp(tmp->_value->first, k) && !this->_comp(k, tmp->_value->first))
-				{
-					return (1);
-				}
+				if (_comp(k, node->pair.first))
+					node = node->left;
+				else if (_comp(node->pair.first, k))
+					node = node->right;
 				else
-					return (0);
-			}
-			return (0);
-		};
-
-		iterator lower_bound(const key_type &k)
-		{
-			iterator it = this->begin();
-			for (; it != this->end(); it++)
-			{
-				if (!this->_comp(it->first, k))
 					break;
 			}
-			return (it);
-		};
+			return const_iterator(node);
+		}
 
-		const_iterator lower_bound(const key_type &k) const
+		size_type count (const key_type& k) const
 		{
-			const_iterator it = this->begin();
-			for (; it != this->end(); it++)
+			if (find(k) != end())
+				return 1;
+			return 0;
+		}
+
+		iterator lower_bound (const key_type& k)
+		{
+			iterator it = begin();
+			while (it != end())
 			{
-				if (!this->_comp(it->first, k))
-					break;
+				if (!_comp(it.it->pair.first, k))
+					return it;
+				it++;
 			}
-			return (it);
-		};
+			return it;
+		}
 
-		iterator upper_bound(const key_type &k)
+		const_iterator lower_bound (const key_type& k) const
 		{
-			iterator it = this->begin();
-			for (; it != this->end(); it++)
+			const_iterator it = begin();
+			while (it != end())
 			{
-				if (this->_comp(k, it->first))
-					break;
+				if (!_comp(it.it->pair.first, k))
+					return it;
+				it++;
 			}
-			return (it);
-		};
+			return it;
+		}
 
-		const_iterator upper_bound(const key_type &k) const
+		iterator upper_bound (const key_type& k)
 		{
-			const_iterator it = this->begin();
-			for (; it != this->end(); it++)
+			iterator it = begin();
+			while (it != end())
 			{
-				if (this->_comp(k, it->first))
-					break;
+				if (_comp(k, it.it->pair.first))
+					return it;
+				it++;
 			}
-			return (it);
-		};
+			return it;
+		}
 
-		pair<const_iterator, const_iterator> equal_range(const key_type &k) const
+		const_iterator upper_bound (const key_type& k) const
 		{
-			const_iterator lb = this->lower_bound(k);
-			const_iterator ub = this->upper_bound(k);
+			const_iterator it = begin();
+			while (it != end())
+			{
+				if (_comp(k, it.it->pair.first))
+					return it;
+				it++;
+			}
+			return it;
+		}
 
-			return (make_pair<const_iterator, const_iterator>(lb, ub));
-		};
-
-		pair<iterator, iterator> equal_range(const key_type &k)
+		pair<const_iterator,const_iterator> equal_range (const key_type& k) const
 		{
-			iterator lb = this->lower_bound(k);
-			iterator ub = this->upper_bound(k);
+			const_iterator end = lower_bound(k);
+			const_iterator start = end;
+			if (!_comp(k, end.it->pair.first) && !_comp(end.it->pair.first, k))
+				end++;
+			return ft::make_pair(start, end);
+		}
 
-			return (ft::make_pair<iterator, iterator>(lb, ub));
-		};
+		pair<iterator,iterator> equal_range (const key_type& k)
+		{
+			iterator end = lower_bound(k);
+			iterator start = end;
+			if (!_comp(k, end.it->pair.first) && !_comp(end.it->pair.first, k))
+				end++;
+			return ft::make_pair(start, end);
+		}
 
 		allocator_type get_allocator() const
 		{
-			return (this->_allocator);
-		};
-
-	private:
-		allocator_type _allocator;
-		key_compare _comp;
-		size_type _size;
-		BinaryTree<key_type const, mapped_type> *_root;
-
-		BinaryTree<key_type const, mapped_type> *_private_find(key_type const &k, char *side)
-		{
-			BinaryTree<key_type const, mapped_type> *tmp = this->_root;
-
-			while (tmp)
-			{
-				if (this->_comp(k, tmp->_value->first) && tmp->_lh && !tmp->_lh->isFirstElement())
-				{
-					tmp = tmp->_lh;
-					*side = 'l';
-				}
-				else if (this->_comp(tmp->_value->first, k) && tmp->_rh && !tmp->_rh->isLastElement())
-				{
-					*side = 'r';
-					tmp = tmp->_rh;
-				}
-				else if (!this->_comp(tmp->_value->first, k) && !this->_comp(k, tmp->_value->first))
-				{
-					return (tmp);
-				}
-				else
-				{
-					return (nullptr);
-				}
-			}
-			return (nullptr);
-		};
+			return _allocator;
+		}
 	};
-};
+}
+
 
 #endif
