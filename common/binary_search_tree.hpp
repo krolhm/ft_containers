@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 21:35:01 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/12 18:19:20 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/14 11:10:46 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "pair.hpp"
 
 // source: https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
+// /////// https://youtu.be/V97oYgN9cIE
 
 /*
 **				8

@@ -6,14 +6,15 @@
 #    By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/16 18:38:36 by rbourgea          #+#    #+#              #
-#    Updated: 2021/09/12 18:19:40 by rbourgea         ###   ########.fr        #
+#    Updated: 2021/09/14 11:02:20 by rbourgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	check
+NAME	=	ft_containers
 
-SRCS	=	tests/map_test.cpp
-			# tests/vector_test.cpp
+SRCS	=	tests/main.cpp	\
+			tests/map_test.cpp \
+			tests/vector_test.cpp
 
 OBJS	=	$(SRCS:.cpp=.o)
 

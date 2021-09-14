@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 10:35:52 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/13 14:11:30 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/14 10:58:43 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,8 @@ void checkVectorsDiff(std::vector<T>& stl_vector, ft::vector<T>& ft_vector)
 	std::cout << "]" << std::endl << std::endl;
 }
 
-int main(int argc, char** argv)
+void vector_test()
 {
-	(void)argc;
-	(void)argv;
 	std::cout << BOLD << "VECTOR TESTS: " << RESET << std::endl;
 
 	std::cout << RESET << BOLD << "==============================" << std::endl;
@@ -519,6 +517,4 @@ int main(int argc, char** argv)
 	checkVectorsDiff(stl_swap_one, ft_swap_one);
 	checkVectorsDiff(stl_swap_two, ft_swap_two);
 	std::cin.get();
-
-	return (0);
 }
