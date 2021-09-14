@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 21:35:01 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/14 11:10:46 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/14 12:06:34 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ namespace ft
 	class binary_search_tree
 	{
 		public:
-			typedef binary_search_tree						self;
-			typedef self									&self_reference;
+			typedef binary_search_tree						that; // == this
 			typedef T										value_type;
-			typedef Node									node_type;
 			typedef Node									*node_pointer;
 			typedef Node_Alloc								node_alloc;
 			typedef ft::bst_iterator<Node, Compare>			iterator;
@@ -52,8 +50,8 @@ namespace ft
 			typedef size_t									size_type;
 
 			// Constructors:
-			binary_search_tree(const node_alloc &node_alloc_init = node_alloc())
-				: _node_alloc(node_alloc_init)
+			binary_search_tree(const node_alloc &init = node_alloc())
+				: _node_alloc(init)
 			{
 				_last_node = _node_alloc.allocate(1);
 				_node_alloc.construct(_last_node, Node(_last_node, _last_node, _last_node));
@@ -77,11 +75,11 @@ namespace ft
 
 				while (start_node != _last_node)
 				{
-					int curkey = start_node->value.first;
-					if (curkey == to_insert.first)
+					int currentKey = start_node->value.first;
+					if (currentKey == to_insert.first)
 						return (ft::make_pair(iterator(start_node, _last_node), false));
 					prev_node = start_node;
-					if (to_insert.first > curkey)
+					if (to_insert.first > currentKey)
 					{
 						side = true;
 						start_node = start_node->right;
@@ -101,8 +99,8 @@ namespace ft
 				else
 					prev_node->left = new_node;
 				
-				_last_node->left = _BST_get_lower_node(_last_node->parent);
-				_last_node->right = _BST_get_higher_node(_last_node->parent);
+				_last_node->left = _bst_get_lower_node(_last_node->parent);
+				_last_node->right = _bst_get_higher_node(_last_node->parent);
 				_last_node->value.first += 1;
 				return (ft::make_pair(iterator(new_node, _last_node), true));
 			}
@@ -128,7 +126,7 @@ namespace ft
 				return (node);
 			}
 
-			void swap(self& x)
+			void swap(that& x)
 			{
 				if (&x == this)
 					return ;
@@ -148,17 +146,17 @@ namespace ft
 			node_alloc      _node_alloc;
 
 		private :
-			node_pointer _BST_get_lower_node(node_pointer root)
-			{
-				while (root != _last_node && root->left != _last_node)
-					root = root->left;
-				return (root);
-			}
-
-			node_pointer _BST_get_higher_node(node_pointer root)
+			node_pointer _bst_get_higher_node(node_pointer root)
 			{
 				while (root != _last_node && root->right != _last_node)
 					root = root->right;
+				return (root);
+			}
+
+			node_pointer _bst_get_lower_node(node_pointer root)
+			{
+				while (root != _last_node && root->left != _last_node)
+					root = root->left;
 				return (root);
 			}
 
@@ -177,8 +175,8 @@ namespace ft
 				else
 					_last_node->parent = new_node;
 
-				_last_node->left = _BST_get_lower_node(_last_node->parent);
-				_last_node->right = _BST_get_higher_node(_last_node->parent);
+				_last_node->left = _bst_get_lower_node(_last_node->parent);
+				_last_node->right = _bst_get_higher_node(_last_node->parent);
 				_last_node->value.first -= 1;
 				
 				new_node->parent = node->parent;
@@ -223,8 +221,8 @@ namespace ft
 					to_remove->parent = new_node;
 				}
 
-				_last_node->left = _BST_get_lower_node(_last_node->parent);
-				_last_node->right = _BST_get_higher_node(_last_node->parent);
+				_last_node->left = _bst_get_lower_node(_last_node->parent);
+				_last_node->right = _bst_get_higher_node(_last_node->parent);
 				_last_node->value.first -= 1;
 
 				_node_alloc.destroy(to_remove);
@@ -247,7 +245,7 @@ namespace ft
 
 				if (node->left != _last_node && node->right != _last_node)
 				{
-					node_pointer successor = _BST_get_lower_node(node->right);
+					node_pointer successor = _bst_get_lower_node(node->right);
 					_replaceDoubleChildren(node, successor);
 					return ;
 				}
