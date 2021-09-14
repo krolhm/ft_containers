@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:45:26 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/14 11:46:36 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/14 11:47:38 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -287,7 +287,7 @@ namespace ft
 {
 
 template <typename Key, typename T, class Compare = less<Key> >
-class Map {
+class map {
 public:
     typedef Key                                             key_type;
     typedef T                                               mapped_type;
@@ -315,21 +315,21 @@ public:
     typedef typename RedBlackTree<value_type, value_compare>::const_iterator            const_iterator;
     typedef typename RedBlackTree<value_type, value_compare>::reverse_iterator          reverse_iterator;
     typedef typename RedBlackTree<value_type, value_compare>::const_reverse_iterator    const_reverse_iterator;
-    explicit Map (const key_compare& comp = key_compare()) : _key_comp(comp) {} ;
+    explicit map (const key_compare& comp = key_compare()) : _key_comp(comp) {} ;
 
     template <class InputIterator>
-    Map (InputIterator first, InputIterator last, const key_compare& comp = key_compare()) : _key_comp(comp) {
+    map (InputIterator first, InputIterator last, const key_compare& comp = key_compare()) : _key_comp(comp) {
         insert(first, last);
     }
-    Map (const Map& x) {
+    map (const map& x) {
         *this = x;
     }
 
-    ~Map() {
+    ~map() {
         clear();
     }
 
-    Map&    operator=(const Map& x) {
+    map&    operator=(const map& x) {
         clear();
         _map = x._map;
         _key_comp = x._key_comp;
@@ -425,7 +425,7 @@ public:
 
     }
 
-    void swap (Map& x) {
+    void swap (map& x) {
         _map.swap(x._map);
     }
 
@@ -451,8 +451,8 @@ public:
     }
 
     const_iterator find (const key_type& k) const {
-        Map::const_iterator res = lower_bound(k);
-        Map::const_iterator e = end();
+        map::const_iterator res = lower_bound(k);
+        map::const_iterator e = end();
         return (res == e || _key_comp(k, (*res).first) ? end() : res);
     }
 
