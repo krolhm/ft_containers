@@ -6,7 +6,7 @@
 #    By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/16 18:38:36 by rbourgea          #+#    #+#              #
-#    Updated: 2021/09/15 11:48:51 by rbourgea         ###   ########.fr        #
+#    Updated: 2021/09/15 11:50:12 by rbourgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,13 @@ ifeq ($(STL), 1)
 		SRCS	=	tests/main.cpp	\
 				tests/map_test.cpp \
 				tests/vector_test.cpp
-else
-	SRCS	=	tests/main_ft.cpp
+	endif
+endif
+
+ifeq (($FT), 0)
+	ifeq (($STL), 0)
+		SRCS	=	tests/main_ft.cpp
+	endif
 endif
 
 OBJS	=	$(SRCS:.cpp=.o)
