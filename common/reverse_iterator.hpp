@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 17:09:16 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/04 18:20:10 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/15 12:56:08 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <typeinfo>
 # include <iostream>
 
-# include "iterator_traits.hpp"
+# include "Iterator_traits.hpp"
 
 namespace ft
 {

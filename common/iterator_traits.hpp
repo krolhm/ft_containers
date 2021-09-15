@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 16:03:55 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/06 16:28:50 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/15 12:55:47 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <typeinfo>
 # include <iostream>
 
-# include "iterator.hpp"
-# include "random_access_iterator.hpp"
+# include "Iterator.hpp"
+# include "Random_access_iterator.hpp"
 
 namespace ft
 {

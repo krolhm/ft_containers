@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   binary_search_tree.hpp                             :+:      :+:    :+:   */
+/*   BinarySearchTree.hpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 21:35:01 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/14 12:06:34 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/15 12:55:33 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BINARY_SEARCH_TREE_HPP
 # define BINARY_SEARCH_TREE_HPP
 
-# include "others.hpp"
-# include "bst_iterator.hpp"
-# include "pair.hpp"
+# include "Others.hpp"
+# include "BstIterator.hpp"
+# include "Pair.hpp"
 
 // source: https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
 // /////// https://youtu.be/V97oYgN9cIE

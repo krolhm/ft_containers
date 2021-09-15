@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:45:56 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/14 12:14:50 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/15 12:56:44 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 # include <stdexcept>
 # include <iostream>
 # include <cstring>
-# include "common/others.hpp"
-# include "common/random_access_iterator.hpp"
-# include "common/reverse_iterator.hpp"
-# include "common/lexicographical_compare.hpp"
-# include "common/iterator.hpp"
-# include "common/enable_if.hpp"
-# include "common/is_integral.hpp"
+# include "common/Others.hpp"
+# include "common/Random_access_iterator.hpp"
+# include "common/Reverse_iterator.hpp"
+# include "common/Lexicographical_compare.hpp"
+# include "common/Iterator.hpp"
+# include "common/Enable_if.hpp"
+# include "common/Is_integral.hpp"
 
 // For your vector implementation, it is not mandatory to code the vector<bool> specialization.
 

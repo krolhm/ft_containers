@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:45:26 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/14 11:53:13 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/15 12:57:11 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@
 # include <stdexcept>
 # include <iostream>
 # include <cstring>
-# include "common/others.hpp"
-# include "common/random_access_iterator.hpp"
-# include "common/reverse_iterator.hpp"
-# include "common/lexicographical_compare.hpp"
-# include "common/iterator.hpp"
-# include "common/iterator_traits.hpp"
-# include "common/enable_if.hpp"
-# include "common/is_integral.hpp"
-# include "common/binary_search_tree.hpp"
-# include "common/pair.hpp"
+# include "common/Others.hpp"
+# include "common/Random_access_iterator.hpp"
+# include "common/Reverse_iterator.hpp"
+# include "common/Lexicographical_compare.hpp"
+# include "common/Iterator.hpp"
+# include "common/Iterator_traits.hpp"
+# include "common/Enable_if.hpp"
+# include "common/Is_integral.hpp"
+# include "common/BinarySearchTree.hpp"
+# include "common/Pair.hpp"
 
 namespace ft
 {

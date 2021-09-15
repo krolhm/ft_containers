@@ -6,15 +6,15 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:42:08 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/04 18:20:52 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/15 12:56:03 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RANDOM_ACCESS_ITERATOR_HPP
 # define RANDOM_ACCESS_ITERATOR_HPP
 
-# include "iterator.hpp"
-# include "others.hpp"
+# include "Iterator.hpp"
+# include "Others.hpp"
 
 namespace ft
 {

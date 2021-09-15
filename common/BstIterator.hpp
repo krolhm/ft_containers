@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bst_iterator.hpp                                   :+:      :+:    :+:   */
+/*   BstIterator.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 18:31:15 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/14 12:01:38 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/15 12:55:15 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BST_ITERATOR_HPP
 # define BST_ITERATOR_HPP
 
-# include "iterator.hpp"
-# include "iterator_traits.hpp"
+# include "Iterator.hpp"
+# include "Iterator_traits.hpp"
 
 namespace ft
 {
