@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:07:38 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/15 11:55:31 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/15 12:02:04 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -527,26 +527,26 @@ int main(int argc, char **argv)
 
 	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Default constructor: " << RESET << std::endl;
-	ft::stack<int> stl_stack;
-	print_stack(stl_stack);
+	ft::stack<int> stack;
+	print_stack(stack);
 	std::cin.get();
 	
 	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Push: " << RESET << std::endl;
 	for (int i = 0; i < 3; i++)
-		stl_stack.push(i);
-	print_stack(stl_stack);
+		stack.push(i);
+	print_stack(stack);
 	std::cin.get();
 	
 	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Top: " << RESET << std::endl;
-	std::cout << "[STL] end().first = " << stl_stack.top() << std::endl << std::endl;
+	std::cout << "[STL] end().first = " << stack.top() << std::endl << std::endl;
 	std::cin.get();
 	
 	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Pop: " << RESET << std::endl;
-	stl_stack.pop();
-	print_stack(stl_stack);
+	stack.pop();
+	print_stack(stack);
 	std::cin.get();
     
     return (0);
