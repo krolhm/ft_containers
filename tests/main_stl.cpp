@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 15:44:10 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/15 12:33:29 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/15 14:22:54 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -439,7 +439,7 @@ int main(int argc, char **argv)
 	std::cout << std::endl << "Const Iterator End(): " << RESET << std::endl;
 	std::map<int, std::string>::const_iterator map_const2 = map.end();
 	std::cout << "const end().first = " << (*map_const2).first << std::endl;
-	std::cout << "const end().second = " << (*map_const2).second << std::endl << std::endl;
+	// std::cout << "const end().second = " << (*map_const2).second << std::endl << std::endl;
 	std::cin.get();
 	
 	std::cout << RESET << BOLD << "==============================" << std::endl;
