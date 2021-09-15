@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:07:38 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/15 11:40:33 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/15 11:55:31 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 
 template <class T>
-void print_vector(ft::stack<T>& stack)
+void print_stack(ft::stack<T>& stack)
 {
 	std::cout << "Size = " << stack.size() << std::endl;
 	std::cout << "Empty = " << stack.empty() << std::endl;
