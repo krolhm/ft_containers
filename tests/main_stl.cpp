@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 15:44:10 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/15 11:59:33 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/15 12:06:46 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -386,12 +386,6 @@ int main(int argc, char **argv)
 	print_vector(swap_one);
 	print_vector(swap_two);
 	std::cin.get();
-	
-
-
-
-
-	
 
 	std::cout << BOLD << "MAP TESTS: " << RESET << std::endl;
 

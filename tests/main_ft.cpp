@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:07:38 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/15 12:02:04 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/15 12:15:19 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void print_stack(ft::stack<T>& stack)
 }
 
 template <class T1, class T2>
-void print_map(ft::stack<T1, T2>& map)
+void print_map(ft::map<T1, T2>& map)
 {
 	std::cout << "Size = " << map.size() << std::endl;
 	std::cout << "Max Size = " << map.max_size() << std::endl;
@@ -93,7 +93,7 @@ int main(int argc, char **argv)
     (void)argc;
     (void)argv;
 	
-	std::cout << BLUE BOLD << "__STL__ " << RESET << std::endl;
+	std::cout << BLUE BOLD << "__FT__ " << RESET << std::endl;
 
     std::cout << BOLD << "VECTOR TESTS: " << RESET << std::endl;
 
@@ -386,12 +386,6 @@ int main(int argc, char **argv)
 	print_vector(swap_one);
 	print_vector(swap_two);
 	std::cin.get();
-	
-
-
-
-
-	
 
 	std::cout << BOLD << "MAP TESTS: " << RESET << std::endl;
 
