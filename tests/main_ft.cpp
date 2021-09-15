@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:07:38 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/15 12:41:46 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/15 14:24:26 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -439,7 +439,7 @@ int main(int argc, char **argv)
 	std::cout << std::endl << "Const Iterator End(): " << RESET << std::endl;
 	ft::map<int, std::string>::const_iterator map_const2 = map.end();
 	std::cout << "const end().first = " << (*map_const2).first << std::endl;
-	std::cout << "const end().second = " << (*map_const2).second << std::endl << std::endl;
+	// std::cout << "const end().second = " << (*map_const2).second << std::endl << std::endl;
 	std::cin.get();
 	
 	std::cout << RESET << BOLD << "==============================" << std::endl;
@@ -458,14 +458,14 @@ int main(int argc, char **argv)
 	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Iterator rend(): " << RESET << std::endl;
 	std::cout << "rend().first = " << (*map.rend()).first << std::endl;
-	std::cout << "rend().second = " << (*map.rend()).second << std::endl << std::endl;
+	// std::cout << "rend().second = " << (*map.rend()).second << std::endl << std::endl;
 	std::cin.get();
 	
 	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Const Iterator rend(): " << RESET << std::endl;
 	ft::map<int, std::string>::const_reverse_iterator map_const4 = map.rend();
 	std::cout << "const rend().first = " << (*map_const4).first << std::endl;
-	std::cout << "const rend().second = " << (*map_const4).second << std::endl << std::endl;
+	// std::cout << "const rend().second = " << (*map_const4).second << std::endl << std::endl;
 	std::cin.get();
 	
 	std::cout << RESET << BOLD << "==============================" << std::endl;
