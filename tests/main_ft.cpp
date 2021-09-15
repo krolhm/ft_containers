@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:07:38 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/15 12:15:19 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/15 12:41:46 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -432,7 +432,7 @@ int main(int argc, char **argv)
 	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Iterator End(): " << RESET << std::endl;
 	std::cout << "end().first = " << (*map.end()).first << std::endl;
-	std::cout << "end().second = " << (*map.end()).second << std::endl << std::endl;
+	// std::cout << "end().second = " << (*map.end()).second << std::endl << std::endl;
 	std::cin.get();
 	
 	std::cout << RESET << BOLD << "==============================" << std::endl;
