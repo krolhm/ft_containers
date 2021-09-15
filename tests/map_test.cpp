@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 17:01:55 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/14 11:50:16 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/15 10:41:32 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,24 @@ void checkMapsDiff(std::map<T1, T2>& stl_map, ft::map<T1, T2>& ft_map)
 		std::cout << GREEN << std::endl << "=> size() [OK]" << std::endl;
 	else
 		std::cout << RED << "size() [ERROR]" << std::endl;
-	std::cout << "[STL] Size = " << stl_map.size() << std::endl;
+	std::cout << "Size = " << stl_map.size() << std::endl;
 	std::cout << "[FT]  Size = " << ft_map.size() << std::endl;
 
 	if (stl_map.max_size() == ft_map.max_size())
 		std::cout << GREEN << std::endl << "=> max_size() [OK]" << std::endl;
 	else
 		std::cout << RED << "max_size() [ERROR]" << std::endl;
-	std::cout << "[STL] Max Size = " << stl_map.max_size() << std::endl;
+	std::cout << "Max Size = " << stl_map.max_size() << std::endl;
 	std::cout << "[FT]  Max Size = " << ft_map.max_size() << std::endl;
 
 	if (stl_map.empty() == ft_map.empty())
 		std::cout << GREEN << std::endl << "=> empty() [OK]" << std::endl;
 	else
 		std::cout << RED << "empty() [ERROR]" << std::endl;
-	std::cout << "[STL] Empty = " << stl_map.empty() << std::endl;
+	std::cout << "Empty = " << stl_map.empty() << std::endl;
 	std::cout << "[FT]  Empty = " << ft_map.empty() << std::endl << std::endl;
 	
-	std::cout << RESET << "[STL] Content = [";
+	std::cout << RESET << "Content = [";
 	typename std::map<T1, T2>::const_iterator stl_it;
 	for (stl_it = stl_map.begin(); stl_it != stl_map.end(); stl_it++)
 	{
@@ -118,13 +118,13 @@ void map_test()
 		std::cout << GREEN << std::endl << "=> begin() first [OK]" << std::endl;
 	else
 		std::cout << RED << "=> begin() first [ERROR]" << std::endl;
-	std::cout << "[STL] begin().first = " << (*stl_map.begin()).first << std::endl;
+	std::cout << "begin().first = " << (*stl_map.begin()).first << std::endl;
 	std::cout << "[FT]  begin().first = " << (*ft_map.begin()).first << std::endl << std::endl;
 	if ((*stl_map.begin()).second == (*ft_map.begin()).second)
 		std::cout << GREEN << std::endl << "=> begin() second [OK]" << std::endl;
 	else
 		std::cout << RED << "=> begin() second [ERROR]" << std::endl;
-	std::cout << "[STL] begin().second = " << (*stl_map.begin()).second << std::endl;
+	std::cout << "begin().second = " << (*stl_map.begin()).second << std::endl;
 	std::cout << "[FT]  begin().second = " << (*ft_map.begin()).second << std::endl << std::endl;
 	std::cin.get();
 	
@@ -136,13 +136,13 @@ void map_test()
 		std::cout << GREEN << std::endl << "=> const begin() first [OK]" << std::endl;
 	else
 		std::cout << RED << "=> const begin() first [ERROR]" << std::endl;
-	std::cout << "[STL] const begin().first = " << (*stl_map_const).first << std::endl;
+	std::cout << "const begin().first = " << (*stl_map_const).first << std::endl;
 	std::cout << "[FT]  const begin().first = " << (*ft_map_const).first << std::endl << std::endl;
 	if ((*stl_map_const).second == (*ft_map_const).second)
 		std::cout << GREEN << std::endl << "=> const begin() second [OK]" << std::endl;
 	else
 		std::cout << RED << "=> const begin() second [ERROR]" << std::endl;
-	std::cout << "[STL] const begin().second = " << (*stl_map_const).second << std::endl;
+	std::cout << "const begin().second = " << (*stl_map_const).second << std::endl;
 	std::cout << "[FT]  const begin().second = " << (*ft_map_const).second << std::endl << std::endl;
 	std::cin.get();
 
@@ -152,13 +152,13 @@ void map_test()
 		std::cout << GREEN << std::endl << "=> end() first [OK]" << std::endl;
 	else
 		std::cout << RED << "=> end() first [ERROR]" << std::endl;
-	std::cout << "[STL] end().first = " << (*stl_map.end()).first << std::endl;
+	std::cout << "end().first = " << (*stl_map.end()).first << std::endl;
 	std::cout << "[FT]  end().first = " << (*ft_map.end()).first << std::endl << std::endl;
 	if ((*stl_map.end()).second == (*ft_map.end()).second)
 		std::cout << GREEN << std::endl << "=> end() second [OK]" << std::endl;
 	else
 		std::cout << RED << "=> end() second [ERROR]" << std::endl;
-	std::cout << "[STL] end().second = " << (*stl_map.end()).second << std::endl;
+	std::cout << "end().second = " << (*stl_map.end()).second << std::endl;
 	std::cout << "[FT]  end().second = " << (*ft_map.end()).second << std::endl << std::endl;
 	std::cin.get();
 	
@@ -170,13 +170,13 @@ void map_test()
 		std::cout << GREEN << std::endl << "=> const end() first [OK]" << std::endl;
 	else
 		std::cout << RED << "=> const end() first [ERROR]" << std::endl;
-	std::cout << "[STL] const end().first = " << (*stl_map_const2).first << std::endl;
+	std::cout << "const end().first = " << (*stl_map_const2).first << std::endl;
 	std::cout << "[FT]  const end().first = " << (*ft_map_const2).first << std::endl << std::endl;
 	if ((*stl_map_const2).second == (*ft_map_const2).second)
 		std::cout << GREEN << std::endl << "=> const end() second [OK]" << std::endl;
 	else
 		std::cout << RED << "=> const end() second [ERROR]" << std::endl;
-	std::cout << "[STL] const end().second = " << (*stl_map_const2).second << std::endl;
+	std::cout << "const end().second = " << (*stl_map_const2).second << std::endl;
 	std::cout << "[FT]  const end().second = " << (*ft_map_const2).second << std::endl << std::endl;
 	std::cin.get();
 	
@@ -186,13 +186,13 @@ void map_test()
 		std::cout << GREEN << std::endl << "=> rbegin() first [OK]" << std::endl;
 	else
 		std::cout << RED << "=> rbegin() first [ERROR]" << std::endl;
-	std::cout << "[STL] rbegin().first = " << (*stl_map.rbegin()).first << std::endl;
+	std::cout << "rbegin().first = " << (*stl_map.rbegin()).first << std::endl;
 	std::cout << "[FT]  rbegin().first = " << (*ft_map.rbegin()).first << std::endl << std::endl;
 	if ((*stl_map.rbegin()).second == (*ft_map.rbegin()).second)
 		std::cout << GREEN << std::endl << "=> rbegin() second [OK]" << std::endl;
 	else
 		std::cout << RED << "=> rbegin() second [ERROR]" << std::endl;
-	std::cout << "[STL] rbegin().second = " << (*stl_map.rbegin()).second << std::endl;
+	std::cout << "rbegin().second = " << (*stl_map.rbegin()).second << std::endl;
 	std::cout << "[FT]  rbegin().second = " << (*ft_map.rbegin()).second << std::endl << std::endl;
 	std::cin.get();
 	
@@ -204,13 +204,13 @@ void map_test()
 		std::cout << GREEN << std::endl << "=> const rbegin() first [OK]" << std::endl;
 	else
 		std::cout << RED << "=> const rbegin() first [ERROR]" << std::endl;
-	std::cout << "[STL] const rbegin().first = " << (*stl_map_const3).first << std::endl;
+	std::cout << "const rbegin().first = " << (*stl_map_const3).first << std::endl;
 	std::cout << "[FT]  const rbegin().first = " << (*ft_map_const3).first << std::endl << std::endl;
 	if ((*stl_map_const3).second == (*ft_map_const3).second)
 		std::cout << GREEN << std::endl << "=> const rbegin() second [OK]" << std::endl;
 	else
 		std::cout << RED << "=> const rbegin() second [ERROR]" << std::endl;
-	std::cout << "[STL] const rbegin().second = " << (*stl_map_const3).second << std::endl;
+	std::cout << "const rbegin().second = " << (*stl_map_const3).second << std::endl;
 	std::cout << "[FT]  const rbegin().second = " << (*ft_map_const3).second << std::endl << std::endl;
 	std::cin.get();
 	
@@ -220,13 +220,13 @@ void map_test()
 		std::cout << GREEN << std::endl << "=> rend() first [OK]" << std::endl;
 	else
 		std::cout << RED << "=> rend() first [ERROR]" << std::endl;
-	std::cout << "[STL] rend().first = " << (*stl_map.rend()).first << std::endl;
+	std::cout << "rend().first = " << (*stl_map.rend()).first << std::endl;
 	std::cout << "[FT]  rend().first = " << (*ft_map.rend()).first << std::endl << std::endl;
 	if ((*stl_map.rend()).second == (*ft_map.rend()).second)
 		std::cout << GREEN << std::endl << "=> rend() second [OK]" << std::endl;
 	else
 		std::cout << RED << "=> rend() second [ERROR]" << std::endl;
-	std::cout << "[STL] rend().second = " << (*stl_map.rend()).second << std::endl;
+	std::cout << "rend().second = " << (*stl_map.rend()).second << std::endl;
 	std::cout << "[FT]  rend().second = " << (*ft_map.rend()).second << std::endl << std::endl;
 	std::cin.get();
 	
@@ -238,13 +238,13 @@ void map_test()
 		std::cout << GREEN << std::endl << "=> const rend() first [OK]" << std::endl;
 	else
 		std::cout << RED << "=> const rend() first [ERROR]" << std::endl;
-	std::cout << "[STL] const rend().first = " << (*stl_map_const4).first << std::endl;
+	std::cout << "const rend().first = " << (*stl_map_const4).first << std::endl;
 	std::cout << "[FT]  const rend().first = " << (*ft_map_const4).first << std::endl << std::endl;
 	if ((*stl_map_const4).second == (*ft_map_const4).second)
 		std::cout << GREEN << std::endl << "=> const rend() second [OK]" << std::endl;
 	else
 		std::cout << RED << "=> const rend() second [ERROR]" << std::endl;
-	std::cout << "[STL] const rend().second = " << (*stl_map_const4).second << std::endl;
+	std::cout << "const rend().second = " << (*stl_map_const4).second << std::endl;
 	std::cout << "[FT]  const rend().second = " << (*ft_map_const4).second << std::endl << std::endl;
 	std::cin.get();
 	
@@ -260,7 +260,7 @@ void map_test()
 		std::cout << GREEN << std::endl << "=> const operator[] test 2 [OK]" << std::endl;
 	else
 		std::cout << RED << "=> const operator[] test 2 [ERROR]" << std::endl;
-	std::cout << "[STL] stl_map[-9] = " << stl_map[-9] << std::endl;
+	std::cout << "stl_map[-9] = " << stl_map[-9] << std::endl;
 	std::cout << "[FT]  stl_map[-9] = " << ft_map[-9] << std::endl << std::endl;
 	std::cin.get();
 	
@@ -305,5 +305,42 @@ void map_test()
 	stl_map.clear();
 	ft_map.clear();
 	checkMapsDiff(stl_map, ft_map);
+	std::cin.get();
+	
+
+
+	
+
+
+
+
+
+
+	std::cout << BOLD << "MAP TESTS: " << RESET << std::endl;
+
+	std::cout << RESET << BOLD << "==============================" << std::endl;
+	std::cout << std::endl << "Default constructor: " << RESET << std::endl;
+	std::stack<int> stl_stack;
+	print_stack(stl_stack);
+	std::cin.get();
+	
+	std::cout << RESET << BOLD << "==============================" << std::endl;
+	std::cout << std::endl << "Push: " << RESET << std::endl;
+	for (int i = 0; i < 3; i++)
+	{
+		stl_stack.push(i);
+	}
+	print_stack(stl_stack);
+	std::cin.get();
+	
+	std::cout << RESET << BOLD << "==============================" << std::endl;
+	std::cout << std::endl << "Top: " << RESET << std::endl;
+	std::cout << "end().first = " << stl_stack.top() << std::endl << std::endl;
+	std::cin.get();
+	
+	std::cout << RESET << BOLD << "==============================" << std::endl;
+	std::cout << std::endl << "Pop: " << RESET << std::endl;
+	stl_stack.pop();
+	print_stack(stl_stack);
 	std::cin.get();
 }

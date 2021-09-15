@@ -6,15 +6,29 @@
 #    By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/16 18:38:36 by rbourgea          #+#    #+#              #
-#    Updated: 2021/09/14 11:02:20 by rbourgea         ###   ########.fr        #
+#    Updated: 2021/09/14 15:43:10 by rbourgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+STL		=	1
+
+FT		=	0
+
 NAME	=	ft_containers
 
-SRCS	=	tests/main.cpp	\
-			tests/map_test.cpp \
-			tests/vector_test.cpp
+ifeq (STL == 1 && FT == 0)
+	SRCS	=	tests/main_stl.cpp
+endif
+
+ifeq (STL == 0 && FT == 1)
+	SRCS	=	tests/main_ft.cpp
+endif
+
+ifeq (STL == 1 && FT == 1)
+	SRCS	=	tests/main.cpp	\
+				tests/map_test.cpp \
+				tests/vector_test.cpp
+endif
 
 OBJS	=	$(SRCS:.cpp=.o)
 
