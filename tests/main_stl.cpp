@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 15:44:10 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/15 14:26:46 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/16 11:35:39 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -535,8 +535,13 @@ int main(int argc, char **argv)
 	
 	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Pop: " << RESET << std::endl;
-	stack.pop();
-	print_stack(stack);
+	std::cout << "Popping out elements...";
+	while (!stack.empty())
+	{
+		std::cout << ' ' << stack.top();
+		stack.pop();
+	}
+	std::cout << std::endl;
 	std::cin.get();
     
     return (0);
