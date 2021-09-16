@@ -6,7 +6,7 @@
 #    By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/16 18:38:36 by rbourgea          #+#    #+#              #
-#    Updated: 2021/09/15 11:57:06 by rbourgea         ###   ########.fr        #
+#    Updated: 2021/09/16 11:13:18 by rbourgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ ifeq ($(STL), 1)
 	endif
 endif
 
-ifeq (($FT), 0)
-	ifeq (($STL), 0)
+ifeq ($(FT), 0)
+	ifeq ($(STL), 0)
 		SRCS	=	tests/main_ft.cpp
 	endif
 endif
