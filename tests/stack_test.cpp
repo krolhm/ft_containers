@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:25:10 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/16 12:05:10 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/16 12:07:09 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void stack_test()
 		stl_stack.push(i);
 		ft_stack.push(i);
 	}
-	std::cout << GREEN << std::endl << "=> top() [OK]" << std::endl;
+	std::cout << GREEN << std::endl << "=> push() [OK]" << std::endl;
 	std::cin.get();
 	
 	std::cout << RESET << BOLD << "==============================" << std::endl;
