@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:07:38 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/15 14:24:26 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/15 14:26:53 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -534,7 +534,7 @@ int main(int argc, char **argv)
 	
 	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Top: " << RESET << std::endl;
-	std::cout << "[STL] end().first = " << stack.top() << std::endl << std::endl;
+	std::cout << "end().first = " << stack.top() << std::endl << std::endl;
 	std::cin.get();
 	
 	std::cout << RESET << BOLD << "==============================" << std::endl;
