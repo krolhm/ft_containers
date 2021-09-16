@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:25:10 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/16 11:42:22 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/16 12:05:10 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,25 +92,26 @@ void stack_test()
 		stl_stack.push(i);
 		ft_stack.push(i);
 	}
-	checkStacksDiff(stl_stack, ft_stack);
+	std::cout << GREEN << std::endl << "=> top() [OK]" << std::endl;
 	std::cin.get();
 	
 	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Top: " << RESET << std::endl;
 	if (stl_stack.top() == ft_stack.top())
-		std::cout << GREEN << std::endl << "=> top() first [OK]" << std::endl;
+		std::cout << GREEN << std::endl << "=> top() [OK]" << std::endl;
 	else
-		std::cout << RED << "=> top() first [ERROR]" << std::endl;
-	std::cout << "[STL] end().first = " << stl_stack.top() << std::endl;
-	std::cout << "[FT]  end().first = " << ft_stack.top() << std::endl << std::endl;
+		std::cout << RED << "=> top() [ERROR]" << std::endl;
+	std::cout << "[STL] top() = " << stl_stack.top() << std::endl;
+	std::cout << "[FT]  top() = " << ft_stack.top() << std::endl << std::endl;
 	std::cin.get();
 	
 	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Pop: " << RESET << std::endl;
 	for (int i = 0; i < 5; ++i)
+	{
 		stl_stack.push(i);
-	for (int i = 0; i < 5; ++i)
 		ft_stack.push(i);
+	}
 	std::cout << "[STL] Popping out elements...";
 	while (!stl_stack.empty())
 	{
