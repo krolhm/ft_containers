@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:25:10 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/16 11:39:55 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/16 11:42:22 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,9 @@ void stack_test()
 	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Pop: " << RESET << std::endl;
 	for (int i = 0; i < 5; ++i)
-		stack.push(i);
+		stl_stack.push(i);
+	for (int i = 0; i < 5; ++i)
+		ft_stack.push(i);
 	std::cout << "[STL] Popping out elements...";
 	while (!stl_stack.empty())
 	{
