@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:46:01 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/14 12:21:57 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/16 17:22:58 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ namespace ft
 	bool operator> (const ft::stack<T, Container> &lhs, const ft::stack<T, Container> &rhs)
 	{
 		return rhs < lhs;
+	}
+
+	template <typename T, typename Container>
+	bool operator<(const ft::stack<T, Container> &lhs, const ft::stack<T, Container> &rhs)
+	{
+		return lhs.c < rhs.c;
 	}
 
 	template <typename T, typename Container>
@@ -99,11 +105,6 @@ class ft::stack
 		void pop()
 		{
 			c.pop_back();
-		}
-
-		friend bool operator< (const ft::stack<T, Container> &lhs, const ft::stack<T, Container> &rhs)
-		{
-			return lhs.c < rhs.c;
 		}
 
 	protected:

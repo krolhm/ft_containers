@@ -6,11 +6,11 @@
 #    By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/16 18:38:36 by rbourgea          #+#    #+#              #
-#    Updated: 2021/09/16 11:46:25 by rbourgea         ###   ########.fr        #
+#    Updated: 2021/09/16 12:12:23 by rbourgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-STL		=	0
+STL		=	1
 
 FT		=	1
 
@@ -19,6 +19,7 @@ NAME	=	ft_containers
 ifeq ($(STL), 1)
 	ifeq ($(FT), 0)
 		SRCS	=	tests/main_stl.cpp
+		NAME	=	binary_stl
 	else
 		SRCS	=	tests/main.cpp	\
 					tests/map_test.cpp \
@@ -30,6 +31,7 @@ endif
 ifeq ($(FT), 1)
 	ifeq ($(STL), 0)
 		SRCS	=	tests/main_ft.cpp
+		NAME	=	binary_ft
 	endif
 endif
 
