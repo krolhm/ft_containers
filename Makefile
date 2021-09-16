@@ -6,13 +6,13 @@
 #    By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/16 18:38:36 by rbourgea          #+#    #+#              #
-#    Updated: 2021/09/16 11:13:18 by rbourgea         ###   ########.fr        #
+#    Updated: 2021/09/16 11:17:52 by rbourgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-STL		=	1
+STL		=	0
 
-FT		=	0
+FT		=	1
 
 NAME	=	ft_containers
 
@@ -26,7 +26,7 @@ ifeq ($(STL), 1)
 	endif
 endif
 
-ifeq ($(FT), 0)
+ifeq ($(FT), 1)
 	ifeq ($(STL), 0)
 		SRCS	=	tests/main_ft.cpp
 	endif

@@ -6,7 +6,7 @@
 /*   By: rbourgea <rbourgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:07:38 by rbourgea          #+#    #+#             */
-/*   Updated: 2021/09/15 14:26:53 by rbourgea         ###   ########.fr       */
+/*   Updated: 2021/09/16 11:17:13 by rbourgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -401,7 +401,7 @@ int main(int argc, char **argv)
 	const std::string range_str[] = {"Yes", "No", "Why", "idk", "forty-two"};
 	ft::map<int, std::string> map;
 	for (int i = 0; i < 5; i++)
-		map.insert(std::make_pair(range_int[i], range_str[i]));
+		map.insert(ft::make_pair(range_int[i], range_str[i]));
 	print_map(map);
 	std::cin.get();
 	
@@ -476,7 +476,7 @@ int main(int argc, char **argv)
 	
 	std::cout << RESET << BOLD << "==============================" << std::endl;
 	std::cout << std::endl << "Insert: " << RESET << std::endl;
-	map.insert(std::make_pair(1234, "42"));
+	map.insert(ft::make_pair(1234, "42"));
 	print_map(map);
 	std::cin.get();
 	
